@@ -88,19 +88,143 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dist\401.html" />
+    <Content Include="Content\dist\404.html" />
+    <Content Include="Content\dist\500.html" />
+    <Content Include="Content\dist\assets\demo\chart-area-demo.js" />
+    <Content Include="Content\dist\assets\demo\chart-bar-demo.js" />
+    <Content Include="Content\dist\assets\demo\chart-pie-demo.js" />
+    <Content Include="Content\dist\assets\demo\datatables-demo.js" />
+    <Content Include="Content\dist\assets\img\error-404-monochrome.svg" />
+    <Content Include="Content\dist\charts.html" />
+    <Content Include="Content\dist\css\styles.css" />
+    <Content Include="Content\dist\index.html" />
+    <Content Include="Content\dist\js\scripts.js" />
+    <Content Include="Content\dist\layout-sidenav-light.html" />
+    <Content Include="Content\dist\layout-static.html" />
+    <Content Include="Content\dist\login.html" />
+    <Content Include="Content\dist\password.html" />
+    <Content Include="Content\dist\register.html" />
+    <Content Include="Content\dist\tables.html" />
+    <Content Include="Content\scripts\build-assets.js" />
+    <Content Include="Content\scripts\build-pug.js" />
+    <Content Include="Content\scripts\build-scripts.js" />
+    <Content Include="Content\scripts\build-scss.js" />
+    <Content Include="Content\scripts\clean.js" />
+    <Content Include="Content\scripts\render-assets.js" />
+    <Content Include="Content\scripts\render-pug.js" />
+    <Content Include="Content\scripts\render-scripts.js" />
+    <Content Include="Content\scripts\render-scss.js" />
+    <Content Include="Content\scripts\sb-watch.js" />
+    <Content Include="Content\scripts\start-debug.js" />
+    <Content Include="Content\scripts\start.js" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\src\assets\demo\chart-area-demo.js" />
+    <Content Include="Content\src\assets\demo\chart-bar-demo.js" />
+    <Content Include="Content\src\assets\demo\chart-pie-demo.js" />
+    <Content Include="Content\src\assets\demo\datatables-demo.js" />
+    <Content Include="Content\src\assets\img\error-404-monochrome.svg" />
+    <Content Include="Content\src\js\scripts.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.dll" />
+    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.pdb" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csproj.CopyComplete" />
+    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csprojAssemblyReference.cache" />
+    <Content Include="Content\src\pug\layouts\authentication.pug" />
+    <Content Include="Content\src\pug\layouts\dashboard.pug" />
+    <Content Include="Content\src\pug\layouts\error.pug" />
+    <Content Include="Content\src\pug\layouts\includes\footer.pug" />
+    <Content Include="Content\src\pug\layouts\includes\head\css.pug" />
+    <Content Include="Content\src\pug\layouts\includes\head\icons.pug" />
+    <Content Include="Content\src\pug\layouts\includes\head\meta.pug" />
+    <Content Include="Content\src\pug\layouts\includes\head\title.pug" />
+    <Content Include="Content\src\pug\layouts\includes\navigation\sidenav.pug" />
+    <Content Include="Content\src\pug\layouts\includes\navigation\topnav.pug" />
+    <Content Include="Content\src\pug\layouts\includes\scripts.pug" />
+    <Content Include="Content\src\pug\pages\401.pug" />
+    <Content Include="Content\src\pug\pages\404.pug" />
+    <Content Include="Content\src\pug\pages\500.pug" />
+    <Content Include="Content\src\pug\pages\charts.pug" />
+    <Content Include="Content\src\pug\pages\includes\datatable.pug" />
+    <Content Include="Content\src\pug\pages\includes\page-header.pug" />
+    <Content Include="Content\src\pug\pages\index.pug" />
+    <Content Include="Content\src\pug\pages\layout-sidenav-light.pug" />
+    <Content Include="Content\src\pug\pages\layout-static.pug" />
+    <Content Include="Content\src\pug\pages\login.pug" />
+    <Content Include="Content\src\pug\pages\password.pug" />
+    <Content Include="Content\src\pug\pages\register.pug" />
+    <Content Include="Content\src\pug\pages\tables.pug" />
+    <Content Include="Content\src\scss\layout\_authentication.scss" />
+    <Content Include="Content\src\scss\layout\_dashboard-default.scss" />
+    <Content Include="Content\src\scss\layout\_dashboard-fixed.scss" />
+    <Content Include="Content\src\scss\layout\_error.scss" />
+    <Content Include="Content\src\scss\navigation\sidenav\_sidenav-dark.scss" />
+    <Content Include="Content\src\scss\navigation\sidenav\_sidenav-light.scss" />
+    <Content Include="Content\src\scss\navigation\sidenav\_sidenav.scss" />
+    <Content Include="Content\src\scss\navigation\_nav.scss" />
+    <Content Include="Content\src\scss\navigation\_topnav.scss" />
+    <Content Include="Content\src\scss\styles.scss" />
+    <Content Include="Content\src\scss\variables\_navigation.scss" />
+    <Content Include="Content\src\scss\variables\_spacing.scss" />
+    <Content Include="Content\src\scss\_global.scss" />
+    <Content Include="Content\src\scss\_variables.scss" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ServidoresController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Servidores\Listar.cshtml" />
+    <Content Include="Views\Usuarios\Gravar.cshtml" />
+    <Content Include="Views\Usuarios\Alterar.cshtml" />
+    <Content Include="Views\Usuarios\Excluir.cshtml" />
+    <Content Include="Views\Dashboard\Listar.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Servidores\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\RecuperarSenha.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,8 +234,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
