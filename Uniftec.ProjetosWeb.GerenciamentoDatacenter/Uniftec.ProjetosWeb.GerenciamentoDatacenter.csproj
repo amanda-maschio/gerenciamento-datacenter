@@ -131,19 +131,12 @@
     <Content Include="Content\src\js\scripts.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.dll" />
-    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.pdb" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csproj.CopyComplete" />
-    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\Uniftec.ProjetosWeb.GerenciamentoDatacenter.csprojAssemblyReference.cache" />
     <Content Include="Content\src\pug\layouts\authentication.pug" />
     <Content Include="Content\src\pug\layouts\dashboard.pug" />
     <Content Include="Content\src\pug\layouts\error.pug" />
@@ -194,6 +187,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ServidoresController.cs" />
@@ -201,7 +195,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,16 +209,16 @@
     <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
-    <Content Include="Views\Servidores\Listar.cshtml" />
     <Content Include="Views\Usuarios\Gravar.cshtml" />
-    <Content Include="Views\Usuarios\Alterar.cshtml" />
-    <Content Include="Views\Usuarios\Excluir.cshtml" />
-    <Content Include="Views\Dashboard\Listar.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Servidores\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\RecuperarSenha.cshtml" />
+    <Content Include="Views\Errors\NotFound.cshtml" />
+    <Content Include="Views\Errors\Unauthorized.cshtml" />
+    <Content Include="Views\Errors\ServerError.cshtml" />
+    <Content Include="Views\Usuarios\Gerenciar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -234,8 +228,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

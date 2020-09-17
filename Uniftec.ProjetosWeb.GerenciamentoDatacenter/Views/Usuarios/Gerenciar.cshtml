@@ -23,7 +23,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Criar Conta</h3></div>
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Gerenciar Conta</h3></div>
                                 <div class="card-body">
                                     <form>
                                         <div class="form-row">
@@ -58,11 +58,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="#">Criar Conta</a></div>
+                                       <a class="btn btn-warning btn-block" href="#">Alterar</a>
                                     </form>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <div class="small"><a href="~/Login/Index">Já possui conta? Faça o login</a></div>
                                 </div>
                             </div>
                         </div>
@@ -90,21 +87,3 @@
     <script src="~/Content/src/js/scripts.js"></script>
 </body>
 </html>
-
-<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
-<script>
-    function cria() {
-        var Usuario = new Object();
-        Usuario.PrimeiroNome = $("#inputFirstName").val();
-        Usuario.SegundoNome = $("#inputLastName").val();
-        Usuario.Email = $("#inputEmailAddress").val();
-        Usuario.Senha = $("#inputPassword").val();
-
-
-        var url = "/Usuarios/Gravar";
-        var params = { Usuario: Usuario};
-        $.post(url, params);
-    }
-
-   
-</script>

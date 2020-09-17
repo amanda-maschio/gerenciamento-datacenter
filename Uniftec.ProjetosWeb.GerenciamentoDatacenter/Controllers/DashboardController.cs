@@ -14,9 +14,5 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
             return View();
         }
 
-        public ActionResult Listar()
-        {
-            return View();
-        }
     }
 }
