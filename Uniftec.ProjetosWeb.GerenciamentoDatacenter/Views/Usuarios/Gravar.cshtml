@@ -61,9 +61,6 @@
                                         <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="#">Criar Conta</a></div>
                                     </form>
                                 </div>
-                                <div class="card-footer text-center">
-                                    <div class="small"><a href="~/Login/Index">Já possui conta? Faça o login</a></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,9 +73,9 @@
                     <div class="d-flex align-items-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; Your Website 2020</div>
                         <div>
-                            <a href="#">Privacy Policy</a>
+                            <a href="#">Política de Privacidade</a>
                             &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                            <a href="#">Termos &amp; Condições</a>
                         </div>
                     </div>
                 </div>
@@ -90,21 +87,3 @@
     <script src="~/Content/src/js/scripts.js"></script>
 </body>
 </html>
-
-<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
-<script>
-    function cria() {
-        var Usuario = new Object();
-        Usuario.PrimeiroNome = $("#inputFirstName").val();
-        Usuario.SegundoNome = $("#inputLastName").val();
-        Usuario.Email = $("#inputEmailAddress").val();
-        Usuario.Senha = $("#inputPassword").val();
-
-
-        var url = "/Usuarios/Gravar";
-        var params = { Usuario: Usuario};
-        $.post(url, params);
-    }
-
-   
-</script>

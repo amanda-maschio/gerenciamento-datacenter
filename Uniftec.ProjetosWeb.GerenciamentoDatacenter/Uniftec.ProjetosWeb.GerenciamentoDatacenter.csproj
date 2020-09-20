@@ -218,7 +218,7 @@
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Errors\Unauthorized.cshtml" />
     <Content Include="Views\Errors\ServerError.cshtml" />
-    <Content Include="Views\Usuarios\Gerenciar.cshtml" />
+    <Content Include="Views\Usuarios\Alterar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
