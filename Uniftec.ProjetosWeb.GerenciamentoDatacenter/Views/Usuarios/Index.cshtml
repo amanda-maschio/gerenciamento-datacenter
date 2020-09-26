@@ -16,6 +16,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-primary">
+    <div class="alert alert-success" role="alert" id="sucesso">
+        This is a success alert—check it out!
+    </div>
+    <div class="alert alert-danger" role="alert" id="erro">
+        This is a danger alert—check it out!
+    </div>
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -47,6 +53,29 @@
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label class="small mb-1" for="inputFunction">Função</label>
+                                                    <select class="form-control" id="inputFunction">
+                                                        <option value="N">Selecione</option>
+                                                        <option value="S">Suporte</option>
+                                                        <option value="G">Gerente</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="inputServerAccess">Acesso aos Servidores</label>
+                                                    <select multiple="" class="form-control" id="inputServerAccess">
+                                                        <option value="1">Servidor 1</option>
+                                                        <option value="2">Servidor 2</option>
+                                                        <option value="3">Servidor 3</option>
+                                                        <option value="4">Servidor 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label class="small mb-1" for="inputPassword">Senha</label>
                                                     <input class="form-control py-4" id="inputPassword" type="password" placeholder="Insira a senha" />
                                                 </div>
@@ -60,6 +89,9 @@
                                         </div>
                                         <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="cria()">Criar Conta</a></div>
                                     </form>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="~/Home/Index">Retornar para Página Inicial</a></div>
                                 </div>
                             </div>
                         </div>
@@ -82,6 +114,7 @@
             </footer>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="~/Content/src/js/scripts.js"></script>
@@ -90,6 +123,11 @@
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
+    $(document).ready(function () {
+        $("#sucesso").hide();
+        $("#erro").hide();
+    });
+
     function cria() {
 
         if (confirmaSenha()) {
@@ -97,12 +135,14 @@
             Usuario.PrimeiroNome = $("#inputFirstName").val();
             Usuario.SegundoNome = $("#inputLastName").val();
             Usuario.Email = $("#inputEmailAddress").val();
+            Usuario.Funcao = $("#inputFunction").val();
+            Usuario.Servidores = $("#inputServerAccess").val();
             Usuario.Senha = $("#inputPassword").val();
-
+            
 
             var url = "/Usuarios/Gravar";
             var params = { Usuario: Usuario };
-            $.post(url, params, RetornoProcessamento);
+            $.post(url, params, RetornoGravacao);
         }
     }
 
@@ -117,8 +157,17 @@
         }
     }
 
-    function RetornoProcessamento(retorno) {
+    function RetornoGravacao(retorno) {
         console.log(retorno);
+        if (retorno.MensagemErro) {
+
+            $("#erro").html(retorno.MensagemTexto);
+            $("#erro").show();
+          }
+          else {
+            $("#sucesso").html(retorno.MensagemTexto);
+            $("#sucesso").show();
+          }
     }
 
 </script>

@@ -14,5 +14,10 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
             return View();
         }
 
+        public ActionResult Cadastrar()
+        {
+            return View();
+        }
+
     }
 }

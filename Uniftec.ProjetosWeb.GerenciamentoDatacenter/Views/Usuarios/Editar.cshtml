@@ -11,17 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Criar Conta</title>
+    <title>Alterar dados</title>
     <link href="~/Content/dist/css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-primary">
-    <div class="alert alert-success" role="alert" id="sucesso">
-        This is a success alert—check it out!
-    </div>
-    <div class="alert alert-danger" role="alert" id="erro">
-        This is a danger alert—check it out!
-    </div>
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -29,12 +23,13 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Criar Conta</h3></div>
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Gerenciar Conta</h3></div>
                                 <div class="card-body">
                                     <form>
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <input type="hidden" name="usuario.Id" />
                                                     <label class="small mb-1" for="inputFirstName">Nome</label>
                                                     <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Insira o nome" />
                                                 </div>
@@ -45,6 +40,10 @@
                                                     <input class="form-control py-4" id="inputLastName" type="text" placeholder="Insira o sobrenome" />
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                            <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail" />
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Email</label>
@@ -74,24 +73,15 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputPassword">Senha</label>
                                                     <input class="form-control py-4" id="inputPassword" type="password" placeholder="Insira a senha" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="small mb-1" for="inputConfirmPassword">Confirmação de Senha</label>
-                                                    <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirme a senha" />
-                                                </div>
-                                            </div>
                                         </div>
-                                        <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="cria()">Criar Conta</a></div>
+                                        <a class="btn btn-warning btn-block" onclick="altera()">Alterar</a>
                                     </form>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <div class="small"><a href="~/Home/Index">Retornar para Página Inicial</a></div>
                                 </div>
                             </div>
                         </div>
@@ -114,9 +104,15 @@
             </footer>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="~/Content/src/js/scripts.js"></script>
 </body>
 </html>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    function altera() {
+
+    }
+</script>

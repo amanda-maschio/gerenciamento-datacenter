@@ -19,6 +19,12 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
             return View();
         }
 
+        public ActionResult Gerenciar()
+        {
+
+            return View();
+        }
+
         public ActionResult Gravar(Models.Usuario usuario)
         {
             List<Models.Usuario> usuarios;
@@ -28,7 +34,11 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
 
             Session["usuarios"] = usuarios;
 
-            return Json(usuarios);
+            return Json(new Mensagem()
+            {
+                MensagemErro = false,
+                MensagemTexto = "Cadastro realizado com sucesso!"
+            });
 
         }
 
@@ -50,6 +60,12 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
 
             Session["usuarios"] = usuarios;
 
+            return RedirectToAction("Gerenciar");
+        }
+
+        public ActionResult Editar()  
+        {
+            
             return View();
         }
     }

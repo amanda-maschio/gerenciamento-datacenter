@@ -23,6 +23,8 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter
             {
                 PrimeiroNome = "Joao",
                 SegundoNome = "da Silva",
+                Funcao = "S",
+                Servidores = "1",
                 Email = "joaodasilva@hotmail.com",
                 Senha = "estaeminhasenha"
             };
@@ -32,6 +34,8 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter
 
                 PrimeiroNome = "Maria",
                 SegundoNome = "de Souza",
+                Funcao = "G",
+                Servidores = "2",
                 Email = "mariadesouza@hotmail.com",
                 Senha = "minhasenhaestae"
             };

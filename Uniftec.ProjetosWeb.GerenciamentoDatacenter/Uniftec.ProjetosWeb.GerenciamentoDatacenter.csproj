@@ -195,6 +195,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PontoOrvalho.cs" />
+    <Compile Include="Models\Servidor.cs" />
+    <Compile Include="Models\Mensagem.cs" />
+    <Compile Include="Models\Temperatura.cs" />
+    <Compile Include="Models\Umidade.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -218,7 +223,9 @@
     <Content Include="Views\Errors\NotFound.cshtml" />
     <Content Include="Views\Errors\Unauthorized.cshtml" />
     <Content Include="Views\Errors\ServerError.cshtml" />
-    <Content Include="Views\Usuarios\Alterar.cshtml" />
+    <Content Include="Views\Usuarios\Gerenciar.cshtml" />
+    <Content Include="Views\Usuarios\Editar.cshtml" />
+    <Content Include="Views\Servidores\Cadastrar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -11,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Página Inicial</title>
+    <title>Gerenciar Usuários</title>
     <link href="~/Content/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -94,10 +93,50 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Bem-vindo!</h1>
+                    <h1 class="mt-4">Gerenciar Usuários</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Página Inicial</li>
+                        <li class="breadcrumb-item active">Gerenciar Usuários</li>
                     </ol>
+                    <br />
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-users"></i>
+                            Usuários Cadastrados
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Usuário</th>
+                                            <th>Nome</th>
+                                            <th>Função</th>
+                                        </tr>
+                                    </thead>
+                                   
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#">reginaraborges@empresa.com.br</td>
+                                            <td>Reginara Borges</td>
+                                            <td>Gerente</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">williamdasilva@empresa.com.br</td>
+                                            <td>William da Silva</td>
+                                            <td>Suporte</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">amandamaschio@empresa.com.br</td>
+                                            <td>Amanda Maschio</td>
+                                            <td>Suporte</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
 
@@ -145,4 +184,3 @@
     <script src="~/Content/src/assets/demo/datatables-demo.js"></script>
 </body>
 </html>
-
