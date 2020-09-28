@@ -9,25 +9,11 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
     public class DashboardController : Controller
     {
         // GET: Dashboard
-        public ActionResult Server1()
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Server2()
-        {
-            return View();
-        }
-
-        public ActionResult Server3()
-        {
-            return View();
-        }
-
-        public ActionResult Server4()
-        {
-            return View();
-        }
 
     }
 }

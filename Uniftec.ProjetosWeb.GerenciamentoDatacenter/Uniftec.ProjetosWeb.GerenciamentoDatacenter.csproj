@@ -192,6 +192,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ServidoresController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Filters\SessionLoginActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,7 +212,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Dashboard\Server1.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Usuarios\Gravar.cshtml" />
@@ -226,9 +227,7 @@
     <Content Include="Views\Usuarios\Gerenciar.cshtml" />
     <Content Include="Views\Usuarios\Editar.cshtml" />
     <Content Include="Views\Servidores\Cadastrar.cshtml" />
-    <Content Include="Views\Dashboard\Server2.cshtml" />
-    <Content Include="Views\Dashboard\Server3.cshtml" />
-    <Content Include="Views\Dashboard\Server4.cshtml" />
+    <Content Include="Views\Errors\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

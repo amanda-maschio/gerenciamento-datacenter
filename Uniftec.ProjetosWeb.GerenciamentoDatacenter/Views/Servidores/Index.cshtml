@@ -6,6 +6,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .divServ {
+            font-size: smaller;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -96,7 +101,7 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Servidores</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Servidores disponíveis</li>
+                        <li class="breadcrumb-item active">Servidores Ativos</li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
@@ -123,33 +128,23 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xl">
-                                        <img src="~/imagens/server1.jpeg" loading=lazy alt="server 1">
+                                        <img src="~/Content/img/s1.png" loading=lazy alt="server 1" width="250px">
                                     </div>
                                     <div class="col-x2">
                                         <div class="card-body">
-                                            <table style="text-align:left" cellpadding="5">
-                                                <tr>
-                                                    <td><b> IP Adress: </b></td>
-                                                    <td> 192.168.0.547 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b> M.A.C Adress: </b></td>
-                                                    <td> 00-14-22-01-23-45 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation"></i></td>
-                                                    <td> (0) Alerta(s)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation-circle"></i></td>
-                                                    <td> (0) Perigo(s)</td>
-                                                </tr>
-                                            </table>
+                                            <p class="divServ"><b>Endereço MAC:</b> 00-14-22-01-23-45</p>                                         </p>
+                                            <p class="divServ"><b>Temperatura:</b> 17.5°</p>
+                                            <p class="divServ"><b>Umidade:</b> 22%</p>
+                                            <br />
+                                            <p class="divServ">
+                                                <svg class="svg-inline--fa fa-exclamation-triangle fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation-triangle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path></svg>
+                                                0 Alertas
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer small text-muted">
-                                    <a class="" href="~/Dashboard/Server1">Acesse o Dashboard deste Servidor</a>
+                                    <a class="" href="~/Dashboard/Index">Acesse o Dashboard deste Servidor</a>
                                 </div>
                             </div>
                         </div>
@@ -163,116 +158,27 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xl">
-                                        <img src="server2.jpeg" loading=lazy alt="server 2">
+                                        <img src="~/Content/img/s1.png" loading=lazy alt="server 2" width="250px">
                                     </div>
                                     <div class="col-x2">
                                         <div class="card-body">
-                                            <table style="text-align:left" cellpadding="5">
-                                                <tr>
-                                                    <td><b> IP Adress: </b></td>
-                                                    <td> 192.168.0.268 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b> M.A.C Adress: </b></td>
-                                                    <td> 01-12-18-23-66-57 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation"></i></td>
-                                                    <td> (4) Alerta(s)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation-circle"></i></td>
-                                                    <td> (1) Perigo(s)</td>
-                                                </tr>
-                                            </table>
+                                            <p class="divServ"><b>Endereço MAC:</b> 01-12-18-23-66-57</p>                                         </p>
+                                            <p class="divServ"><b>Temperatura:</b> 30.3°</p>
+                                            <p class="divServ"><b>Umidade:</b> 10%</p>
+                                            <br />
+                                            <p class="divServ">
+                                                <svg class="svg-inline--fa fa-exclamation-triangle fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="exclamation-triangle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"></path></svg>
+                                                1 Alerta
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer small text-muted">
-                                    <a class="" href="~/Dashboard/Server2">Acesse o Dashboard deste Servidor</a>
+                                    <a class="" href="~/Dashboard/Index">Acesse o Dashboard deste Servidor</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-server" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M1.333 2.667C1.333 1.194 4.318 0 8 0s6.667 1.194 6.667 2.667V4C14.665 5.474 11.68 6.667 8 6.667 4.318 6.667 1.333 5.473 1.333 4V2.667zm0 3.667v3C1.333 10.805 4.318 12 8 12c3.68 0 6.665-1.193 6.667-2.665V6.334c-.43.32-.931.58-1.458.79C11.81 7.684 9.967 8 8 8c-1.967 0-3.81-.317-5.21-.876a6.508 6.508 0 0 1-1.457-.79zm13.334 5.334c-.43.319-.931.578-1.458.789-1.4.56-3.242.876-5.209.876-1.967 0-3.81-.316-5.21-.876a6.51 6.51 0 0 1-1.457-.79v1.666C1.333 14.806 4.318 16 8 16s6.667-1.194 6.667-2.667v-1.665z" />
-                                    </svg>
-                                    Servidor Uniftec NH
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl">
-                                        <img src="server3.jpeg" loading=lazy alt="server 3">
-                                    </div>
-                                    <div class="col-x2">
-                                        <div class="card-body">
-                                            <table style="text-align:left" cellpadding="5">
-                                                <tr>
-                                                    <td><b> IP Adress: </b></td>
-                                                    <td> 192.168.0.555 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b> M.A.C Adress: </b></td>
-                                                    <td> 00-45-56-63-98-12 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation"></i></td>
-                                                    <td> (0) Alerta(s)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation-circle"></i></td>
-                                                    <td> (0) Perigo(s)</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer small text-muted">
-                                    <a class="" href="~/Dashboard/Server3">Acesse o Dashboard deste Servidor</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-server" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M1.333 2.667C1.333 1.194 4.318 0 8 0s6.667 1.194 6.667 2.667V4C14.665 5.474 11.68 6.667 8 6.667 4.318 6.667 1.333 5.473 1.333 4V2.667zm0 3.667v3C1.333 10.805 4.318 12 8 12c3.68 0 6.665-1.193 6.667-2.665V6.334c-.43.32-.931.58-1.458.79C11.81 7.684 9.967 8 8 8c-1.967 0-3.81-.317-5.21-.876a6.508 6.508 0 0 1-1.457-.79zm13.334 5.334c-.43.319-.931.578-1.458.789-1.4.56-3.242.876-5.209.876-1.967 0-3.81-.316-5.21-.876a6.51 6.51 0 0 1-1.457-.79v1.666C1.333 14.806 4.318 16 8 16s6.667-1.194 6.667-2.667v-1.665z" />
-                                    </svg>
-                                    Servidor Uniftec POA
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl">
-                                        <img src="server4.jpeg" loading=lazy alt="server 4">
-                                    </div>
-                                    <div class="col-x2">
-                                        <div class="card-body">
-                                            <table style="text-align:left" cellpadding="5">
-                                                <tr>
-                                                    <td><b> IP Adress: </b></td>
-                                                    <td> 192.168.0.456 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b> M.A.C Adress: </b></td>
-                                                    <td> 64-48-27-45-78-64 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation"></i></td>
-                                                    <td> (0) Alerta(s)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><i class="fas fa-exclamation-circle"></i></td>
-                                                    <td> (0) Perigo(s)</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer small text-muted">
-                                    <a class="" href="~/Dashboard/Server4">Acesse o Dashboard deste Servidor</a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </main>
