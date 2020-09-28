@@ -96,7 +96,7 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard / Servidor 1</li>
+                        <li class="breadcrumb-item active">Dashboard / Servidor 4</li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
@@ -123,7 +123,27 @@
                                     </svg><!-- <i class="fas fa-chart-area mr-1"></i> -->
                                     Temperatura
                                 </div>
-                                <div class="card-body" id="temperatura"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div></div>
+
+                                <iframe id="anychart-iframe-embed-samples-gauge-linear-03" src="about:blank" frameBorder="0" class="anychart-embed anychart-embed-samples-gauge-linear-03"></iframe>
+                                <script type="text/javascript">
+                                    (function () {
+                                        function ac_add_to_head(el) {
+                                            var head = document.getElementsByTagName('head')[0];
+                                            head.insertBefore(el, head.firstChild);
+                                        }
+                                        function ac_add_style(css) {
+                                            var ac_style = document.createElement('style');
+                                            if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+                                            else ac_style.appendChild(document.createTextNode(css));
+                                            ac_add_to_head(ac_style);
+                                        }
+                                        ac_add_style(".anychart-embed-samples-gauge-linear-03{width:600px;height:450px;}");
+                                        var doc = document.getElementById('anychart-iframe-embed-samples-gauge-linear-03').contentWindow.document;
+                                        doc.open();
+                                        doc.write("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" \/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\" \/><meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" \/><title>GAUGE Linear 03<\/title><link href=\"https:\/\/playground.anychart.com\/docs\/samples\/GAUGE_Linear_03\/iframe\" rel=\"canonical\" \/><meta content=\"Gauges,Thermometer Gauge\" name=\"keywords\" \/><meta content=\"AnyChart - JavaScript Charts designed to be embedded and integrated\" name=\"description\" \/><!--[if lt IE 9]>\n<script src=\"https:\/\/oss.maxcdn.com\/html5shiv\/3.7.3\/html5shiv.min.js\"><\/script>\n<script src=\"https:\/\/oss.maxcdn.com\/respond\/1.4.2\/respond.min.js\"><\/script>\n<![endif]--><link href=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/css\/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4\" rel=\"stylesheet\" type=\"text\/css\" \/><style>html, body, #container {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n}<\/style><\/head><body><div id=\"container\"><\/div><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-linear-gauge.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script type=\"text\/javascript\">anychart.onDocumentReady(function () {\n    \n    \/\/ create data\n    var data = [92];\n    \n    \/\/ set the gauge type\n    var gauge = anychart.gauges.thermometer();\n\n    \/\/ set the data for the gauge\n    gauge.data(data);\n\n    \/\/ set the title of the gauge\n    gauge.title('Fahrenheit x Celsius');\n\n    \/\/ add a thermometer pointer\n    gauge.addPointer(0);\n\n    \/\/ use the primary scale a Fahrenheit scale\n    var fScale = gauge.scale();\n\n    \/\/ set the minimum and maximum values of the Fahrenheit scale\n    fScale.minimum(-40);\n    fScale.maximum(122);\n\n    \/\/ set the intervals of major and minor ticks on the Fahrenheit scale\n    fScale.ticks().interval(10);\n    fScale.minorTicks().interval(2);    \n\n    \/\/ add an axis on the left side of the gauge\n    var axisLeft = gauge.axis(0);\n\n    \/\/ configure minor ticks on the left axis\n    axisLeft.minorTicks(true)\n    axisLeft.minorTicks().stroke('#cecece');\n\n    \/\/ set the width of the left axis\n    axisLeft.width('0');\n\n    \/\/ set the offset of the left axis (as a percentage of the gauge width)\n    axisLeft.offset('-0.18%');\n\n    \/\/ bind the left axis to the Fahrenheit scale\n    axisLeft.scale(fScale);\n\n    \/\/ configure a Celsius scale\n    var cScale = anychart.scales.linear();\n    cScale.minimum(-40);\n    cScale.maximum(50);\n    cScale.ticks().interval(10);\n    cScale.minorTicks().interval(1);\n\n    \/\/ configure an axis on the right side of the gauge\n    var axisRight = gauge.axis(1);\n    axisRight.minorTicks(true);\n    axisRight.minorTicks().stroke('#cecece');\n    axisRight.width('0');\n    axisRight.offset('3.15%');\n    axisRight.orientation('right');\n\n    \/\/ bind the right axis to the Celsius scale\n    axisRight.scale(cScale);\n\n    \/\/ set the container id\n    gauge.container('container');\n\n    \/\/ initiate drawing the gauge\n    gauge.draw();\n});<\/script><\/body><\/html>");
+                                        doc.close();
+                                    })();</script>
+
                                 <div class="card-footer small text-muted">
                                     <a href="#">Mais detalhes</a>
                                 </div>
@@ -136,7 +156,25 @@
                                     <svg class="svg-inline--fa fa-hand-holding-water fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-holding-water" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M288 256c53 0 96-42.1 96-94 0-40-57.1-120.7-83.2-155.6-6.4-8.5-19.2-8.5-25.6 0C249.1 41.3 192 122 192 162c0 51.9 43 94 96 94zm277.3 72.1c-11.8-10.7-30.2-10-42.6 0L430.3 402c-11.3 9.1-25.4 14-40 14H272c-8.8 0-16-7.2-16-16s7.2-16 16-16h78.3c15.9 0 30.7-10.9 33.3-26.6 3.3-20-12.1-37.4-31.6-37.4H192c-27 0-53.1 9.3-74.1 26.3L71.4 384H16c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h356.8c14.5 0 28.6-4.9 40-14L564 377c15.2-12.1 16.4-35.3 1.3-48.9z"></path></svg><!-- <i class="fas fa-hand-holding-water"></i> --><!-- <i class="fas fa-chart-bar mr-1"></i> -->
                                     Umidade
                                 </div>
-                                <div class="card-body" id="umidade"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div></div>
+                                <iframe id="anychart-iframe-embed-samples-gauge-linear-05" src="about:blank" frameBorder="0" class="anychart-embed anychart-embed-samples-gauge-linear-05"></iframe>
+                                <script type="text/javascript">
+                                    (function () {
+                                        function ac_add_to_head(el) {
+                                            var head = document.getElementsByTagName('head')[0];
+                                            head.insertBefore(el, head.firstChild);
+                                        }
+                                        function ac_add_style(css) {
+                                            var ac_style = document.createElement('style');
+                                            if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+                                            else ac_style.appendChild(document.createTextNode(css));
+                                            ac_add_to_head(ac_style);
+                                        }
+                                        ac_add_style(".anychart-embed-samples-gauge-linear-05{width:600px;height:450px;}");
+                                        var doc = document.getElementById('anychart-iframe-embed-samples-gauge-linear-05').contentWindow.document;
+                                        doc.open();
+                                        doc.write("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" \/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\" \/><meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" \/><title>GAUGE Linear 05<\/title><link href=\"https:\/\/playground.anychart.com\/docs\/samples\/GAUGE_Linear_05\/iframe\" rel=\"canonical\" \/><meta content=\"Dot Chart,Gauges,Linear Gauge,Marker Chart,Statistical Data\" name=\"keywords\" \/><meta content=\"AnyChart - JavaScript Charts designed to be embedded and integrated\" name=\"description\" \/><!--[if lt IE 9]>\n<script src=\"https:\/\/oss.maxcdn.com\/html5shiv\/3.7.3\/html5shiv.min.js\"><\/script>\n<script src=\"https:\/\/oss.maxcdn.com\/respond\/1.4.2\/respond.min.js\"><\/script>\n<![endif]--><link href=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/css\/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4\" rel=\"stylesheet\" type=\"text\/css\" \/><style>html, body, #container {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n}<\/style><\/head><body><div id=\"container\"><\/div><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-linear-gauge.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script type=\"text\/javascript\">anychart.onDocumentReady(function () {\n\n   \/\/ create data\n   var data = [25];\n\n   \/\/ set the gauge type\n   var gauge = anychart.gauges.linear();\n\n   \/\/ set the data for the gauge\n   gauge.data(data);\n\n   \/\/ set the layout\n   gauge.layout('horizontal');\n\n   \/\/ create a color scale\n   var scaleBarColorScale = anychart.scales.ordinalColor().ranges(\n  [\n      {\n          from: 0,\n          to: 25,\n          color: ['#dd2c00']\n      },\n      {\n          from: 25,\n          to: 50,\n          color: ['#ef6c00']\n      },\n      {\n          from: 50,\n          to: 75,\n          color: ['#16685d']\n      },\n      {\n          from: 75,\n          to: 100 ,\n          color: ['#00838f']\n      }\n  ]\n  );\n\n   \/\/ create a Scale Bar\n   var scaleBar = gauge.scaleBar(0);\n\n   \/\/ set the relative height of the control points of the scale bar\n   scaleBar.points([\n       {height: 1, left: 1, right: 0}\n   ]);\n\n   \/\/ set the height and offset of the Scale Bar (both as percentages of the gauge height)\n   scaleBar.width('10%');\n   scaleBar.offset('31%');\n\n   \/\/ use the color scale (defined earlier) as the color scale of the Scale Bar\n   scaleBar.colorScale(scaleBarColorScale);\n\n   \/\/ add a marker pointer\n   var marker = gauge.marker(0);\n\n   \/\/ set the color of the marker\n   marker.color('black');\n\n   \/\/ set the width of the marker\n   marker.width(15);\n\n   \/\/ set the offset of the pointer as a percentage of the gauge width\n   marker.offset('43%');\n\n   \/\/ set the marker type\n   marker.type('triangle-up');\n\n   \/\/ set the zIndex of the marker\n   marker.zIndex(10);\n\n   \/\/ configure the scale\n   var scale = gauge.scale();\n   scale.minimum(0);\n   scale.maximum(100);\n   scale.ticks().interval(10);\n\n   \/\/ configure the axis\n   var axis = gauge.axis();\n   axis.minorTicks(true)\n   axis.minorTicks().stroke('#cecece');\n   axis.width('1%');\n   axis.offset('29.5%');\n   axis.orientation('top');\n\n   \/\/ format axis labels\n   axis.labels().format('{%value}%');\n\n   \/\/ set paddings\n   gauge.padding([0, 50]);\n\n   \/\/ set the container id\n   gauge.container('container');\n\n   \/\/ initiate drawing the gauge\n   gauge.draw();\n});<\/script><\/body><\/html>");
+                                        doc.close();
+                                    })();</script>
                                 <div class="card-footer small text-muted"><a href="#">Mais detalhes</a></div>
                             </div>
                         </div>
@@ -151,6 +189,25 @@
                                     </svg><!-- <i class="fas fa-table mr-1"></i> -->
                                     Ponto de Orvalho
                                 </div>
+                                <iframe id="anychart-iframe-embed-samples-bct-step-line-chart-03" src="about:blank" frameBorder="0" class="anychart-embed anychart-embed-samples-bct-step-line-chart-03"></iframe>
+                                <script type="text/javascript">
+                                    (function () {
+                                        function ac_add_to_head(el) {
+                                            var head = document.getElementsByTagName('head')[0];
+                                            head.insertBefore(el, head.firstChild);
+                                        }
+                                        function ac_add_style(css) {
+                                            var ac_style = document.createElement('style');
+                                            if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+                                            else ac_style.appendChild(document.createTextNode(css));
+                                            ac_add_to_head(ac_style);
+                                        }
+                                        ac_add_style(".anychart-embed-samples-bct-step-line-chart-03{width:600px;height:450px;}");
+                                        var doc = document.getElementById('anychart-iframe-embed-samples-bct-step-line-chart-03').contentWindow.document;
+                                        doc.open();
+                                        doc.write("<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\" \/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\" \/><meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" \/><title><\/title><link href=\"https:\/\/playground.anychart.com\/docs\/samples\/BCT_Step_Line_Chart_03\/iframe\" rel=\"canonical\" \/><meta content=\"Step Line Chart\" name=\"keywords\" \/><meta content=\"AnyChart - JavaScript Charts designed to be embedded and integrated\" name=\"description\" \/><!--[if lt IE 9]>\n<script src=\"https:\/\/oss.maxcdn.com\/html5shiv\/3.7.3\/html5shiv.min.js\"><\/script>\n<script src=\"https:\/\/oss.maxcdn.com\/respond\/1.4.2\/respond.min.js\"><\/script>\n<![endif]--><link href=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/css\/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4\" rel=\"stylesheet\" type=\"text\/css\" \/><style>html, body, #container {\n    width: 100%;\n    height: 100%;\n    margin: 0;\n    padding: 0;\n}<\/style><\/head><body><div id=\"container\"><\/div><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script src=\"https:\/\/cdn.anychart.com\/releases\/8.7.1\/js\/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4\"><\/script><script type=\"text\/javascript\">anychart.onDocumentReady(function () {\n   \n    \/\/ create data\n    var data = [\n      {x: \"-5\", value: 0.10},\n      {x: \"0\", value: 0.10},\n      {x: \"5\", value: 0.12},\n      {x: \"10\", value: 0.13},\n      {x: \"15\", value: 0.15},\n      {x: \"20\", value: 0.15},\n      {x: \"25\", value: 0.15},\n      {x: \"30\", value: 0.19},\n      {x: \"35\", value: 0.20}\n    ];\n\n    \/\/ create a chart\n    var chart = anychart.stepLine();\n\n    \/\/ create a step line series and set the data\n    var series = chart.stepLine(data);\n\n    \/\/ set step direction to the backward mode\n    series.stepDirection(\"backward\");\n\n    \/\/ enable markers\n    series.markers(true);  \n\n    \/\/ set the chart title\n    chart.title(\"\");\n\n    \/\/ set the titles of the axes\n    var xAxis = chart.xAxis();\n    xAxis.title(\"Temperatura (Cº)\");\n    var yAxis = chart.yAxis();\n    yAxis.title(\"Umidade\");\n\n    \/\/ set the container id\n    chart.container(\"container\");\n\n    \/\/ initiate drawing the chart\n    chart.draw();\n});<\/script><\/body><\/html>");
+                                        doc.close();
+                                    })();</script>
                                 <div class="card-body" id="pontoOrvalho">
                                     <div class="table-responsive">
 
@@ -194,7 +251,7 @@
 </html>
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
-<script>
+<!-- <script>
 
     var options = {
         series: [30],
@@ -261,8 +318,4 @@
     var pontoOrvalho = new ApexCharts(document.querySelector("#pontoOrvalho"), options);
     pontoOrvalho.render();
 
-</script>
-
-<script>
-    
-</script>
+</script> -->
