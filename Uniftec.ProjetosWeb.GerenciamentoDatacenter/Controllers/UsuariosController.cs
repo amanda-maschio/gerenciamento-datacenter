@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Uniftec.ProjetosWeb.GerenciamentoDatacenter.API;
 using Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models;
 
 namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
@@ -12,11 +13,20 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            List<Models.Usuario> usuarios;
-            usuarios = (List<Models.Usuario>)Session["usuarios"];
-            ViewBag.usuarios = usuarios;
+            //Consumir API para obter a lista de clientes
+            APIHttpClient clienteHttp = new APIHttpClient(@"https://localhost:44349/api/");
+            var listaUsuario = clienteHttp.Get <List<Usuario>>("usuario");
+            ViewBag.listaUsuario = listaUsuario;
+            //List<Models.Usuario> usuarios;
+            //usuarios = (List<Models.Usuario>)Session["usuarios"];
+            //ViewBag.usuarios = usuarios;
 
             return View();
+        }
+
+        private object List<T>(string v)
+        {
+            throw new NotImplementedException();
         }
 
         public ActionResult Gerenciar()
@@ -33,6 +43,10 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
             usuarios.Add(usuario);
 
             Session["usuarios"] = usuarios;
+
+            APIHttpClient clienteHttp = new APIHttpClient(@"https://localhost:44349/api/");
+            var retorno = clienteHttp.Post<Usuario>("usuario", usuarios);
+           // ViewBag.retorno = retorno.Message;
 
             return Json(new Mensagem()
             {
