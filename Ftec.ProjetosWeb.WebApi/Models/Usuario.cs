@@ -8,6 +8,7 @@ namespace Ftec.ProjetosWeb.WebApi.Models
     public class Usuario
     {
         public Guid Id { get; set; }
+
         public string PrimeiroNome { get; set; }
 
         public string SegundoNome { get; set; }
@@ -20,10 +21,12 @@ namespace Ftec.ProjetosWeb.WebApi.Models
 
         public string Senha { get; set; }
 
+        public List<Servidor> ListaServidores { get; set; }
+
         public Usuario()
         {
             Id = Guid.NewGuid();
+            this.ListaServidores = new List<Servidor>();
         }
-
     }
 }

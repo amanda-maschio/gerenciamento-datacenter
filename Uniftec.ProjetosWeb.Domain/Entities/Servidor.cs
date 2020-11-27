@@ -18,15 +18,18 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
 
         public string SistemaOperacional { get; set; }
 
-        public long MacAddress { get; set; }
+        public string MacAddress { get; set; }
 
         public string IpAddress { get; set; }
 
         public string Descricao { get; set; }
 
+        public Sensor Sensor { get; set; }
+
         public Servidor()
         {
             Id = Guid.NewGuid();
+            this.Sensor = new Sensor();
         }
     }
 }

@@ -21,9 +21,12 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
 
         public string Senha { get; set; }
 
+        public List<Servidor> ListaServidores { get; set; }
+
         public Usuario()
         {
             Id = Guid.NewGuid();
+            this.ListaServidores = new List<Servidor>();
         }
     }
 }

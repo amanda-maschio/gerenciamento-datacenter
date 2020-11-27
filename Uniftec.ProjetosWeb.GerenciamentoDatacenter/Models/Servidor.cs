@@ -17,22 +17,18 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models
 
         public string SistemaOperacional { get; set; }
 
-        public long MacAddress { get; set; }
+        public string MacAddress { get; set; }
 
-        public long IpAddress { get; set; }
+        public string IpAddress { get; set; }
 
         public string Descricao { get; set; }
 
-        public Temperatura Temperatura { get; set; }
-
-        public Umidade Umidade { get; set; }
-
-        public PontoOrvalho PontoOrvalho { get; set; }
-
+        public Sensor Sensor { get; set; }
 
         public Servidor()
         {
             Id = Guid.NewGuid();
+            this.Sensor = new Sensor();
         }
     }
 }

@@ -20,11 +20,14 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models
         public string Email { get; set; }
 
         public string Senha { get; set; }
-       
+
+        public List<Servidor> ListaServidores { get; set; }
+
         public Usuario()
         {
             Id = Guid.NewGuid();
+            this.ListaServidores = new List<Servidor>();
         }
-        
+
     }
 }

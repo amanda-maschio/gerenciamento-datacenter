@@ -15,6 +15,5 @@ namespace Uniftec.ProjetosWeb.Domain.Repository
         Usuario Selecionar(Guid id);
 
         List<Usuario> SelecionarTodos();
-        void Alterar(object usuarios);
     }
 }

@@ -23,7 +23,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     EnderecoFisico = "Rua Gustavo Rahmos Sehbe, 107",
                     Processador = "Intel Xeon Silver 4208 2.1G, 8C/16T, 9.6GT/s, 11M Cache, Turbo, HT (85W) DDR4-2400",
                     SistemaOperacional = "Windows Server 2012",
-                    MacAddress = 00-14-22-01-23-45,
+                    MacAddress = "00-14-22-01-23-45",
                     IpAddress = "172.16.0.100",
                     Descricao = "Descrição breve das características do servidor"
 

@@ -67,7 +67,7 @@ namespace Uniftec.ProjetosWeb.Application
                 }
                 usuarioRepository.Excluir(id);
                 
-                return true;
+               // return true;
             }
             catch (Exception e)
             {
