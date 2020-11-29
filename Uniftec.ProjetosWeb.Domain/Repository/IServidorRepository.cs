@@ -7,13 +7,16 @@ using Uniftec.ProjetosWeb.Domain.Entities;
 
 namespace Uniftec.ProjetosWeb.Domain.Repository
 {
-    public interface IUsuarioRepository
+    public interface IServidorRepository
     {
-        void Inserir(Usuario usuario);
-        void Excluir(Guid id);
-        void Alterar(Usuario usuario);
-        Usuario Selecionar(Guid id);
+        void Inserir(Servidor servidor);
 
-        List<Usuario> SelecionarTodos();
+        void Excluir(Guid id);
+
+        void Alterar(Servidor servidor);
+
+        Servidor Selecionar(Guid id);
+
+        List<Servidor> SelecionarTodos();
     }
 }

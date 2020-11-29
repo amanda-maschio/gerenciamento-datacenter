@@ -8,23 +8,23 @@ using Uniftec.ProjetosWeb.Domain.Repository;
 
 namespace Uniftec.ProjetosWeb.Application
 {
-    public class UsuarioApplication
+    public class ServidorApplication
     {
-        private IUsuarioRepository usuarioRepository;
+        private IServidorRepository servidorRepository;
         
-        public UsuarioApplication(IUsuarioRepository usuarioRepository)
+        public ServidorApplication(IServidorRepository servidorRepository)
         {
-            this.usuarioRepository = usuarioRepository;
+            this.servidorRepository = servidorRepository;
         }
 
 
-        public Guid Inserir(Usuario usuario)
+        public Guid Inserir(Servidor servidor)
         {
             try
             {
-                usuario.Id = Guid.NewGuid();
-                usuarioRepository.Inserir(usuario);
-                return usuario.Id;
+                servidor.Id = Guid.NewGuid();
+                servidorRepository.Inserir(servidor);
+                return servidor.Id;
             }
             catch(Exception e)
             {
@@ -33,17 +33,17 @@ namespace Uniftec.ProjetosWeb.Application
 
         }
 
-        public List<Usuario> ProcurarTodos()
+        public List<Servidor> ProcurarTodos()
         {
             throw new NotImplementedException();
         }
 
-        public Guid Alterar(Usuario usuario)
+        public Guid Alterar(Servidor servidor)
         {
             try
             {
-                usuarioRepository.Alterar(usuario);
-                return usuario.Id;
+                servidorRepository.Alterar(servidor);
+                return servidor.Id;
             }
             catch (Exception e)
             {
@@ -61,7 +61,8 @@ namespace Uniftec.ProjetosWeb.Application
                     throw new ApplicationException("O ID deve ser informado!");
                     //Regra de negócio a partir do repositorio
                 }
-                usuarioRepository.Excluir(id);
+
+                servidorRepository.Excluir(id);
                 return true;
             }
             catch (Exception e)
@@ -71,7 +72,7 @@ namespace Uniftec.ProjetosWeb.Application
 
         }
 
-        public Usuario Procurar(Guid id)
+        public Servidor Procurar(Guid id)
         {
             try
             {
@@ -80,9 +81,10 @@ namespace Uniftec.ProjetosWeb.Application
                     throw new ApplicationException("O ID deve ser informado!");
                     //Regra de negócio a partir do repositorio
                 }
-                var usuario = usuarioRepository.Selecionar(id);
 
-                return usuario;
+                var servidores = servidorRepository.Selecionar(id);
+                return servidores;
+
             }
             catch (Exception e)
             {
@@ -91,13 +93,13 @@ namespace Uniftec.ProjetosWeb.Application
 
         }
 
-        public List<Usuario> ProcurarTodos(Guid id)
+        public List<Servidor> ProcurarTodos(Guid id)
         {
             try
             {
-                var usuarios = usuarioRepository.SelecionarTodos();
+                var servidores = servidorRepository.SelecionarTodos();
 
-                return usuarios;
+                return servidores;
             }
             catch (Exception e)
             {

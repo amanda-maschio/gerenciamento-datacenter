@@ -24,24 +24,38 @@ namespace Uniftec.ProjetosWeb.Repository
             using (NpgsqlConnection con = new NpgsqlConnection(this.stringConexao))
             {
                 con.Open();
-                NpgsqlCommand comando = new NpgsqlCommand();
-                comando.Connection = con;
+                using (var transacao = con.BeginTransaction())
+                {
+                    try
+                    {
+                        NpgsqlCommand comando = new NpgsqlCommand();
+                        comando.Connection = con;
+                        comando.Transaction = transacao;
 
-                //Alterar o Usuario
-                comando.CommandText = "UPDATE public.usuario " +
-                    "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha" +
-                    "WHERE id=@id;";
+                        //Alterar o Usuario
+                        comando.CommandText = "UPDATE public.usuario " +
+                            "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha" +
+                            "WHERE id=@id;";
 
-                comando.Parameters.AddWithValue("id", usuario.Id);
-                comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
-                comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
-                comando.Parameters.AddWithValue("funcao", usuario.Funcao);
-                comando.Parameters.AddWithValue("servidores", usuario.Servidores);
-                comando.Parameters.AddWithValue("email", usuario.Email);
-                comando.Parameters.AddWithValue("senha", usuario.Senha);
+                        comando.Parameters.AddWithValue("id", usuario.Id);
+                        comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
+                        comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
+                        comando.Parameters.AddWithValue("funcao", usuario.Funcao);
+                        comando.Parameters.AddWithValue("servidores", usuario.Servidores);
+                        comando.Parameters.AddWithValue("email", usuario.Email);
+                        comando.Parameters.AddWithValue("senha", usuario.Senha);
 
-                //Executamos o comando
-                comando.ExecuteNonQuery();
+                        //Executamos o comando
+                        comando.ExecuteNonQuery();
+
+                        transacao.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        transacao.Rollback();
+                        throw e;
+                    }
+                }
             }
         }
 
@@ -50,15 +64,29 @@ namespace Uniftec.ProjetosWeb.Repository
             using (NpgsqlConnection con = new NpgsqlConnection(this.stringConexao))
             {
                 con.Open();
-                NpgsqlCommand comando = new NpgsqlCommand();
-                comando.Connection = con;
+                using (var transacao = con.BeginTransaction())
+                {
+                    try
+                    {
+                        NpgsqlCommand comando = new NpgsqlCommand();
+                        comando.Connection = con;
+                        comando.Transaction = transacao;
 
-                //Excluir o Usuario
-                comando.CommandText = "DELETE FROM public.usuario WHERE id=@id;";
-                comando.Parameters.AddWithValue("id", id);
+                        //Excluir o Usuario
+                        comando.CommandText = "DELETE FROM public.usuario WHERE id=@id;";
+                        comando.Parameters.AddWithValue("id", id);
 
-                //Executamos o comando
-                comando.ExecuteNonQuery();
+                        //Executamos o comando
+                        comando.ExecuteNonQuery();
+
+                        transacao.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        transacao.Rollback();
+                        throw e;
+                    }
+                }
             }
         }
 
@@ -67,24 +95,39 @@ namespace Uniftec.ProjetosWeb.Repository
             using (NpgsqlConnection con = new NpgsqlConnection(this.stringConexao))
             {
                 con.Open();
-                NpgsqlCommand comando = new NpgsqlCommand();
-                comando.Connection = con;
 
-                //Inserir o Usuario
-                comando.CommandText = "INSERT INTO public.usuario " +
-                                      "(id, primeironome, segundonome, funcao, servidores, email, senha)" +
-                                      "VALUES(@id, @primeironome, @segundonome, @funcao, @servidores, @email, @senha);";
+                using (var transacao = con.BeginTransaction())
+                {
+                    try
+                    {
+                        NpgsqlCommand comando = new NpgsqlCommand();
+                        comando.Connection = con;
+                        comando.Transaction = transacao;
 
-                comando.Parameters.AddWithValue("id", usuario.Id);
-                comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
-                comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
-                comando.Parameters.AddWithValue("funcao", usuario.Funcao);
-                comando.Parameters.AddWithValue("servidores", usuario.Servidores);
-                comando.Parameters.AddWithValue("email", usuario.Email);
-                comando.Parameters.AddWithValue("senha", usuario.Senha);
+                        //Inserir o Usuario
+                        comando.CommandText = "INSERT INTO public.usuario " +
+                                              "(id, primeironome, segundonome, funcao, servidores, email, senha)" +
+                                              "VALUES(@id, @primeironome, @segundonome, @funcao, @servidores, @email, @senha);";
 
-                //Executamos o comando
-                comando.ExecuteNonQuery();
+                        comando.Parameters.AddWithValue("id", usuario.Id);
+                        comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
+                        comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
+                        comando.Parameters.AddWithValue("funcao", usuario.Funcao);
+                        comando.Parameters.AddWithValue("servidores", usuario.Servidores);
+                        comando.Parameters.AddWithValue("email", usuario.Email);
+                        comando.Parameters.AddWithValue("senha", usuario.Senha);
+
+                        //Executamos o comando
+                        comando.ExecuteNonQuery();
+
+                        transacao.Commit();
+                    }
+                    catch (Exception e)
+                    {
+                        transacao.Rollback();
+                        throw e;
+                    }
+                }
             }
         }
 

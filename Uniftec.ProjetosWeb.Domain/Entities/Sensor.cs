@@ -19,9 +19,17 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
 
         public DateTime Data { get; set; }
 
+        public float PontoOrvalho { get; set; }
+
         public Sensor()
         {
             Id = Guid.NewGuid();
+        }
+
+        public void calculoPontoOrvalho()
+        {
+            //((UR/100)^(1/8))*(112+(0,9*T))+(0,1*T)-112
+            PontoOrvalho = ((float)(Math.Pow((Umidade / 100), (1 / 8)) * (112 + (0.9 * Temperatura)) + (0.1 * Temperatura) - 112));
         }
     }
 }

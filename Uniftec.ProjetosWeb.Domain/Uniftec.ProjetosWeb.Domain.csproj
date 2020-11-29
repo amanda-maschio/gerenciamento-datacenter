@@ -45,6 +45,7 @@
     <Compile Include="Entities\Servidor.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IServidorRepository.cs" />
     <Compile Include="Repository\IUsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup />
