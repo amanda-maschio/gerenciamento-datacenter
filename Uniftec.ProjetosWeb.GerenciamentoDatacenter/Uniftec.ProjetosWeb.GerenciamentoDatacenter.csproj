@@ -261,8 +261,8 @@
     </Compile>
     <Compile Include="Models\Sensor.cs" />
     <Compile Include="Models\Servidor.cs" />
-    <Compile Include="Models\Mensagem.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\UsuarioServidor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

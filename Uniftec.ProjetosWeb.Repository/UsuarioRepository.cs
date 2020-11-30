@@ -48,6 +48,18 @@ namespace Uniftec.ProjetosWeb.Repository
                         //Executamos o comando
                         comando.ExecuteNonQuery();
 
+                        //Alterar o UsuarioServidor
+                        comando.CommandText = "UPDATE public.usuario_servidor " +
+                                               " SET idusuario=@idusuario, idservidor=@idservidor " +
+                                               " WHERE idusuario=@idusuario";
+
+                        UsuarioServidor usuarioServidor = new UsuarioServidor();
+
+                        comando.Parameters.AddWithValue("idusuario", usuarioServidor.Usuario.Id);
+                        comando.Parameters.AddWithValue("idservidor", usuarioServidor.Servidor.Id);
+
+                        comando.ExecuteNonQuery();
+
                         transacao.Commit();
                     }
                     catch (Exception e)
@@ -77,6 +89,11 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Parameters.AddWithValue("id", id);
 
                         //Executamos o comando
+                        comando.ExecuteNonQuery();
+
+                        //Excluir o UsuarioServidor
+                        comando.CommandText = "DELETE FROM public.usuario_servidor WHERE idusuario=@idusuario";
+                        comando.Parameters.AddWithValue("idusuario", id);
                         comando.ExecuteNonQuery();
 
                         transacao.Commit();
@@ -118,6 +135,19 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Parameters.AddWithValue("senha", usuario.Senha);
 
                         //Executamos o comando
+                        comando.ExecuteNonQuery();
+
+                        //Inserir o UsuarioServidor
+                        comando.CommandText = "INSERT INTO public.usuario_servidor " +
+                                               " (idusuario, idservidor, id) " +
+                                               " VALUES(@idusuario, @idservidor, @id)";
+
+                        UsuarioServidor usuarioServidor = new UsuarioServidor();
+
+                        comando.Parameters.AddWithValue("id", usuarioServidor.Id);
+                        comando.Parameters.AddWithValue("idusuario", usuarioServidor.Usuario.Id);
+                        comando.Parameters.AddWithValue("idservidor", usuarioServidor.Servidor.Id);
+
                         comando.ExecuteNonQuery();
 
                         transacao.Commit();

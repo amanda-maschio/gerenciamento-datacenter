@@ -158,13 +158,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ServidorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Sensor.cs" />
     <Compile Include="Models\Servidor.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\UsuarioServidor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,10 +26,10 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
             Id = Guid.NewGuid();
         }
 
-        public void calculoPontoOrvalho()
+        public void CalculoPontoOrvalho()
         {
-            //((UR/100)^(1/8))*(112+(0,9*T))+(0,1*T)-112
-            PontoOrvalho = ((float)(Math.Pow((Umidade / 100), (1 / 8)) * (112 + (0.9 * Temperatura)) + (0.1 * Temperatura) - 112));
+            //Fórmula ponto de orvalho: ((UR/100)^(1/8)) * (112+(0,9*T)) + (0,1*T) - 112
+            PontoOrvalho = (float)(Math.Pow((Umidade / 100), (1 / 8)) * (112 + (0.9 * Temperatura)) + (0.1 * Temperatura) - 112);
         }
     }
 }
