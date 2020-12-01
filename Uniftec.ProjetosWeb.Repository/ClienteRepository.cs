@@ -1,6 +1,4 @@
-﻿using Ftec.WebAPI.Domain.Entities;
-using Ftec.WebAPI.Domain.Interfaces;
-using Npgsql;
+﻿using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uniftec.ProjetosWeb.Domain.Entities;
+using Uniftec.ProjetosWeb.Domain.Repository;
 
-namespace Ftec.WebAPI.Infra.Repository
+namespace Uniftec.ProjetosWeb.Repository
 {
     public class ClienteRepository : IClienteRepository
     {
@@ -34,7 +33,7 @@ namespace Ftec.WebAPI.Infra.Repository
                         {
                             Connection = con,
                             Transaction = trans,
-                            CommandText = @"DELETE FROM usuarios WHERE Id=@Id"
+                            CommandText = @"DELETE FROM cliente WHERE Id=@Id"
                         };
                         cmd.Parameters.AddWithValue("Id", id);
                         cmd.ExecuteNonQuery();
@@ -43,11 +42,11 @@ namespace Ftec.WebAPI.Infra.Repository
                         return true;
 
                     }
-                    catch (Exception ex)
+                    catch (Exception e)
                     {
                         //rollback da transação
                         trans.Rollback();
-                        throw ex;
+                        throw e;
                     }
                 }
             }
@@ -63,7 +62,7 @@ namespace Ftec.WebAPI.Infra.Repository
 
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = @"SELECT * FROM Usuarios WHERE Id=@Id";
+                cmd.CommandText = @"SELECT * FROM cliente WHERE Id=@Id";
                 cmd.Parameters.AddWithValue("Id", id);
                 var reader = cmd.ExecuteReader();
 
@@ -73,7 +72,7 @@ namespace Ftec.WebAPI.Infra.Repository
                     {
                         Id = Guid.Parse(reader["id"].ToString()),
                         Password = reader["password"].ToString(),
-                        UserName = reader["username"].ToString()
+                        Email = reader["email"].ToString()
                     };
                 }
                 reader.Close();
@@ -92,8 +91,8 @@ namespace Ftec.WebAPI.Infra.Repository
 
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = @"SELECT * FROM Usuarios WHERE username=@username";
-                cmd.Parameters.AddWithValue("username", email);
+                cmd.CommandText = @"SELECT * FROM cliente WHERE email=@email";
+                cmd.Parameters.AddWithValue("email", email);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -101,7 +100,7 @@ namespace Ftec.WebAPI.Infra.Repository
                     cliente = new Cliente();
                     cliente.Id = Guid.Parse(reader["id"].ToString());
                     cliente.Password = reader["password"].ToString();
-                    cliente.UserName = reader["username"].ToString();
+                    cliente.Email = reader["email"].ToString();
                 }
                 reader.Close();
 
@@ -111,7 +110,7 @@ namespace Ftec.WebAPI.Infra.Repository
 
         public List<Cliente> FindAll()
         {
-            List<Cliente> usuarios = new List<Cliente>();
+            List<Cliente> clientes = new List<Cliente>();
 
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -119,7 +118,7 @@ namespace Ftec.WebAPI.Infra.Repository
 
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = @"SELECT * FROM Usuarios";
+                cmd.CommandText = @"SELECT * FROM cliente";
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -127,11 +126,11 @@ namespace Ftec.WebAPI.Infra.Repository
                     Cliente cliente = new Cliente();
                     cliente.Id = Guid.Parse(reader["id"].ToString());
                     cliente.Password = reader["password"].ToString();
-                    cliente.UserName = reader["username"].ToString();
+                    cliente.Email = reader["email"].ToString();
 
-                    cliente.Add(cliente);
+                    clientes.Add(cliente);
                 }
-                return cliente;
+                return clientes;
             }
 
         }
@@ -150,11 +149,11 @@ namespace Ftec.WebAPI.Infra.Repository
                         {
                             Connection = con,
                             Transaction = trans,
-                            CommandText = @"INSERT Into Usuarios (id, username, password) values(@id, @username, @password)"
+                            CommandText = @"INSERT into cliente (id, email, password) values(@id, @email, @password)"
                         };
-                        cmd.Parameters.AddWithValue("id", usuario.Id);
-                        cmd.Parameters.AddWithValue("username", usuario.UserName);
-                        cmd.Parameters.AddWithValue("password", usuario.Password);
+                        cmd.Parameters.AddWithValue("id", cliente.Id);
+                        cmd.Parameters.AddWithValue("email", cliente.Email);
+                        cmd.Parameters.AddWithValue("password", cliente.Password);
                         cmd.ExecuteNonQuery();
 
                         //commit na transação
@@ -162,11 +161,11 @@ namespace Ftec.WebAPI.Infra.Repository
                         return cliente.Id;
 
                     }
-                    catch (Exception ex)
+                    catch (Exception e)
                     {
                         //rollback da transação
                         trans.Rollback();
-                        throw ex;
+                        throw e;
                     }
                 }
             }
@@ -185,9 +184,9 @@ namespace Ftec.WebAPI.Infra.Repository
                         NpgsqlCommand cmd = new NpgsqlCommand();
                         cmd.Connection = con;
                         cmd.Transaction = trans;
-                        cmd.CommandText = @"UPDATE Usuarios SET username=@username, password=@password WHERE Id=@id";
+                        cmd.CommandText = @"UPDATE cliente SET email=@email, password=@password WHERE Id=@id";
                         cmd.Parameters.AddWithValue("id", cliente.Id);
-                        cmd.Parameters.AddWithValue("username", cliente.UserName);
+                        cmd.Parameters.AddWithValue("email", cliente.Email);
                         cmd.Parameters.AddWithValue("password", cliente.Password);
                         cmd.ExecuteNonQuery();
 
@@ -196,11 +195,11 @@ namespace Ftec.WebAPI.Infra.Repository
                         return cliente.Id;
 
                     }
-                    catch (Exception ex)
+                    catch (Exception e)
                     {
                         //rollback da transação
                         trans.Rollback();
-                        throw ex;
+                        throw e;
                     }
                 }
             }

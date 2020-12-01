@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -12,7 +13,8 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
 
     public class APIHttpClient
     {
-        private string baseAPI = "http://localhost:3809/api/";
+        private string baseAPI = "http://localhost:50474/api/";
+
         public APIHttpClient(string baseAPI)
         {
             this.baseAPI = baseAPI;
@@ -108,56 +110,56 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
                 }
             }
         }
-    }
+    
 
-public string AuthenticationPost(string email, string password)
-{
-    using (var client = new HttpClient())
-    {
-        client.BaseAddress = new Uri(baseAPI);
-        client.DefaultRequestHeaders.Accept.Clear();
-        var request = new HttpRequestMessage(HttpMethod.Post, (this.baseAPI + "token"));
-        request.Content = new FormUrlEncodedContent(new Dictionary<string, string> {
-                    { "email", email},
-                    { "password", password },
-                    { "grant_type", "password" }
-                });
-
-        var response = client.SendAsync(request).Result;
-
-
-        if (response.IsSuccessStatusCode)
+        public string AuthenticationPost(string email, string password)
         {
-            var payload = JObject.Parse(response.Content.ReadAsStringAsync().Result);
-            var token = payload.Value<string>("access_token");
-
-            //Salva o usuario, senha e token em memoria
-            Usuario usuario = new Usuario()
+            using (var client = new HttpClient())
             {
-                Password = password,
-                Email = email,
-                Token = token
-            };
-            HttpContext.Current.Session["user"] = usuario;
+                client.BaseAddress = new Uri(baseAPI);
+                client.DefaultRequestHeaders.Accept.Clear();
+                var request = new HttpRequestMessage(HttpMethod.Post, (this.baseAPI + "token"));
+                request.Content = new FormUrlEncodedContent(new Dictionary<string, string> {
+                            { "email", email},
+                            { "password", password },
+                            { "grant_type", "password" }
+                        });
 
-            return token;
+                var response = client.SendAsync(request).Result;
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var payload = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+                    var token = payload.Value<string>("access_token");
+
+                    //Salva o usuario, senha e token em memoria
+                    Cliente cliente = new Cliente()
+                    {
+                        Password = password,
+                        Email = email,
+                        Token = token
+                    };
+                    HttpContext.Current.Session["user"] = cliente;
+
+                    return token;
+                }
+                else
+                {
+                    throw new Exception(response.Content.ReadAsStringAsync().Result);
+                }
+            }
         }
-        else
+
+        private void SetarParametrosAutenticacao(HttpClient httpClient)
         {
-            throw new Exception(response.Content.ReadAsStringAsync().Result);
+            if (HttpContext.Current.Session["user"] != null)
+            {
+                var cliente = (Cliente)HttpContext.Current.Session["user"];
+
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cliente.Token);
+            }
         }
     }
 }
-
-private void SetarParametrosAutenticacao(HttpClient httpClient)
-{
-    if (HttpContext.Current.Session["user"] != null)
-    {
-        var usuario = (Usuario)HttpContext.Current.Session["user"];
-
-        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", usuario.Token);
-    }
-}
-}
-}
-}
+    

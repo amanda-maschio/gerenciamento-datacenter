@@ -1,5 +1,4 @@
 ﻿using Ftec.WebAPI.Application;
-using Ftec.WebAPI.Domain.Interfaces;
 using Ftec.WebAPI.Infra.Repository;
 using Microsoft.Owin.Security.OAuth;
 using System;
@@ -9,8 +8,9 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Uniftec.ProjetosWeb.Domain.Repository;
 
-namespace Ftec.WebAPI.App_Start
+namespace Ftec.ProjetosWeb.WebApi.App_Start
 {
     public class AccessTokenProvider : OAuthAuthorizationServerProvider
     {
@@ -24,7 +24,7 @@ namespace Ftec.WebAPI.App_Start
             clienteApplication = new ClienteApplication(clienteRepository);
         }
 
-        public override void ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
         }

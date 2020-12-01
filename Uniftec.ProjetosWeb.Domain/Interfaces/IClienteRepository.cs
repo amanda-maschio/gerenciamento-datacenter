@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uniftec.ProjetosWeb.Domain.Entities;
 
-namespace Uniftec.ProjetosWeb.Domain.Interfaces
+namespace Uniftec.ProjetosWeb.Domain.Repository
 {
-    class IClienteRepository
+    public interface IClienteRepository
     {
-        private Guid Insert(Cliente cliente);
+        Guid Insert(Cliente cliente);
 
         Cliente Find(Guid ID);
 

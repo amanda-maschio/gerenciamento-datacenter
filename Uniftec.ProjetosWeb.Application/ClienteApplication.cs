@@ -1,9 +1,9 @@
-﻿using Ftec.WebAPI.Domain.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uniftec.ProjetosWeb.Domain.Repository;
 
 namespace Ftec.WebAPI.Application
 {
@@ -11,19 +11,19 @@ namespace Ftec.WebAPI.Application
     {
         IClienteRepository clienteRepository;
 
-        public ClienteApplicatio(IClienteRepository clienteRepository)
+        public ClienteApplication(IClienteRepository clienteRepository)
         {
             this.clienteRepository = clienteRepository;
         }
         public bool Autenticar(string email, string password)
         {
-            var user = this.clienteRepository.Find(email.ToLower());
-            if (user == null)
+            var client = this.clienteRepository.Find(email.ToLower());
+            if (client == null)
             {
                 throw new ApplicationException("Usuario não encontrado");
             }
 
-            if (!user.PassswordIsValid(password))
+            if (!client.PasswordIsValid(password))
             {
                 return false;
             }
@@ -45,10 +45,10 @@ namespace Ftec.WebAPI.Application
                 throw new ApplicationException("Nova senha deve ser informada");
             }
 
-            var user = this.clienteRepository.Find(email);
-            user.Password = newPassword;
+            var client = this.clienteRepository.Find(email);
+            client.Password = newPassword;
 
-            this.clienteRepository.Update(user);
+            this.clienteRepository.Update(client);
         }
     }
 }

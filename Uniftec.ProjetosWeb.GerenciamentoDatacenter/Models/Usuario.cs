@@ -29,5 +29,10 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models
             this.ListaServidores = new List<Servidor>();
         }
 
+        public bool SenhaIsValid(string senha)
+        {
+            return (senha == Senha);
+        }
+
     }
 }

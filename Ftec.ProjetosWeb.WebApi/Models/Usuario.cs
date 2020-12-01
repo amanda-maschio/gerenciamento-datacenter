@@ -28,5 +28,10 @@ namespace Ftec.ProjetosWeb.WebApi.Models
             Id = Guid.NewGuid();
             this.ListaServidores = new List<Servidor>();
         }
+
+        public bool SenhaIsValid(string senha)
+        {
+            return (senha == Senha);
+        }
     }
 }

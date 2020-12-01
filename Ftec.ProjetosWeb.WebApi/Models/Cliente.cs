@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Uniftec.ProjetosWeb.Domain.Entities
+namespace Ftec.ProjetosWeb.WebApi.Models
 {
     public class Cliente
     {
