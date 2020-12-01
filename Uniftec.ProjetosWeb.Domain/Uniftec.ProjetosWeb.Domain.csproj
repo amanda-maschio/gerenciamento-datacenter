@@ -41,10 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\Sensor.cs" />
     <Compile Include="Entities\Servidor.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Entities\UsuarioServidor.cs" />
+    <Compile Include="Interfaces\IClienteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IServidorRepository.cs" />
     <Compile Include="Repository\IUsuarioRepository.cs" />

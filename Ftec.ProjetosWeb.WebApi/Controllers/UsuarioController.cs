@@ -20,6 +20,9 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
         /// Este método retorna uma listagem de todos os usuarios
         /// </summary>
         /// <returns>Nao possui retorno</returns>
+       
+        [Authorize] //para esse metodo ser processado ele precisa ser autenticado
+
         public HttpResponseMessage Get()
         {
             try
