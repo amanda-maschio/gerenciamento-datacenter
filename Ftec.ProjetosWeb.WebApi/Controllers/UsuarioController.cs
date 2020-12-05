@@ -21,7 +21,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
         /// </summary>
         /// <returns>Nao possui retorno</returns>
        
-        [Authorize] //para esse metodo ser processado ele precisa ser autenticado
+        //[Authorize] //para esse metodo ser processado ele precisa ser autenticado
 
         public HttpResponseMessage Get()
         {
@@ -38,6 +38,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                 {
                     UsuariosModel.Add(new Usuario()
                     {
+                        Id = user.Id,
                         PrimeiroNome = user.PrimeiroNome,
                         SegundoNome = user.SegundoNome,
                         Funcao = user.Funcao,
@@ -78,6 +79,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                 {
                     usuarioModel = new Usuario()
                     {
+                        Id = usuario.Id,
                         PrimeiroNome = usuario.PrimeiroNome,
                         SegundoNome = usuario.SegundoNome,
                         Funcao = usuario.Funcao,
@@ -119,9 +121,37 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     Funcao = usuario.Funcao,
                     Servidores = usuario.Servidores,
                     Email = usuario.Email,
-                    Senha = usuario.Senha
+                    Senha = usuario.Senha,
+  
                 };
 
+                foreach (var servidor in usuario.ListaServidores)
+                {
+                    usuarioDomain.ListaServidores.Add(new Uniftec.ProjetosWeb.Domain.Entities.Servidor()
+                    {
+                        Id = servidor.Id,
+                        Nome = servidor.Nome,
+                        EnderecoFisico = servidor.EnderecoFisico,
+                        Processador = servidor.Processador,
+                        SistemaOperacional = servidor.SistemaOperacional,
+                        MacAddress = servidor.MacAddress,
+                        IpAddress = servidor.IpAddress,
+                        Descricao = servidor.Descricao,
+                        Sensor =
+                        {
+                            Id = servidor.Sensor.Id,
+                            Temperatura = servidor.Sensor.Temperatura,
+                            Pressao = servidor.Sensor.Pressao,
+                            Altitude = servidor.Sensor.Altitude,
+                            Umidade = servidor.Sensor.Umidade,
+                            Data = servidor.Sensor.Data,
+                            PontoOrvalho = servidor.Sensor.PontoOrvalho
+                        }
+
+                    });
+
+                }
+              
                 usuarioApplication.Inserir(usuarioDomain);
 
                 return Request.CreateErrorResponse(HttpStatusCode.OK, Convert.ToString(usuarioDomain.Id));

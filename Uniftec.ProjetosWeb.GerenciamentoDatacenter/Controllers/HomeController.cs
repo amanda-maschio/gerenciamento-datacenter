@@ -11,6 +11,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            //Exibe a tela inicial
             return View();
         }
     }

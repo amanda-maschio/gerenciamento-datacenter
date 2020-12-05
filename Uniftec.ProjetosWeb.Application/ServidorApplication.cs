@@ -35,7 +35,16 @@ namespace Uniftec.ProjetosWeb.Application
 
         public List<Servidor> ProcurarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listaServidores = servidorRepository.SelecionarTodos();
+                return listaServidores;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public Guid Alterar(Servidor servidor)

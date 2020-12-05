@@ -32,10 +32,15 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Connection = con;
                         comando.Transaction = transacao;
 
+                        //Deletar os UsuarioServidor
+                        comando.CommandText = "DELETE FROM public.usuario_servidor WHERE idusuario=@idusuario";
+                        comando.Parameters.AddWithValue("idusuario", usuario.Id);
+                        comando.ExecuteNonQuery();
+
                         //Alterar o Usuario
                         comando.CommandText = "UPDATE public.usuario " +
-                            "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha" +
-                            "WHERE id=@id;";
+                                              "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha" +
+                                              "WHERE id=@id";
 
                         comando.Parameters.AddWithValue("id", usuario.Id);
                         comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
@@ -48,17 +53,19 @@ namespace Uniftec.ProjetosWeb.Repository
                         //Executamos o comando
                         comando.ExecuteNonQuery();
 
-                        //Alterar o UsuarioServidor
-                        comando.CommandText = "UPDATE public.usuario_servidor " +
-                                               " SET idusuario=@idusuario, idservidor=@idservidor " +
-                                               " WHERE idusuario=@idusuario";
+                        //Inserir os UsuarioServidor
+                        foreach (var serv in usuario.ListaServidores)
+                        {
+                            comando.CommandText = "INSERT INTO public.usuario_servidor " +
+                                                   " (idusuario, idservidor, id) " +
+                                                   " VALUES(@idusuario, @idservidor, @id)";
 
-                        UsuarioServidor usuarioServidor = new UsuarioServidor();
+                            comando.Parameters.AddWithValue("id", Guid.NewGuid());
+                            comando.Parameters.AddWithValue("idusuario", usuario.Id);
+                            comando.Parameters.AddWithValue("idservidor", serv.Id);
 
-                        comando.Parameters.AddWithValue("idusuario", usuarioServidor.Usuario.Id);
-                        comando.Parameters.AddWithValue("idservidor", usuarioServidor.Servidor.Id);
-
-                        comando.ExecuteNonQuery();
+                            comando.ExecuteNonQuery();
+                        }
 
                         transacao.Commit();
                     }
@@ -137,18 +144,19 @@ namespace Uniftec.ProjetosWeb.Repository
                         //Executamos o comando
                         comando.ExecuteNonQuery();
 
-                        //Inserir o UsuarioServidor
-                        comando.CommandText = "INSERT INTO public.usuario_servidor " +
-                                               " (idusuario, idservidor, id) " +
-                                               " VALUES(@idusuario, @idservidor, @id)";
+                        foreach (var serv in usuario.ListaServidores)
+                        {
+                            //Inserir o UsuarioServidor
+                            comando.CommandText = "INSERT INTO public.usuario_servidor " +
+                                                   " (idusuario, idservidor, id) " +
+                                                   " VALUES(@idusuario, @idservidor, @id)";
 
-                        UsuarioServidor usuarioServidor = new UsuarioServidor();
+                            comando.Parameters.AddWithValue("id", Guid.NewGuid());
+                            comando.Parameters.AddWithValue("idusuario", usuario.Id);
+                            comando.Parameters.AddWithValue("idservidor", serv.Id);
 
-                        comando.Parameters.AddWithValue("id", usuarioServidor.Id);
-                        comando.Parameters.AddWithValue("idusuario", usuarioServidor.Usuario.Id);
-                        comando.Parameters.AddWithValue("idservidor", usuarioServidor.Servidor.Id);
-
-                        comando.ExecuteNonQuery();
+                            comando.ExecuteNonQuery();
+                        }
 
                         transacao.Commit();
                     }
@@ -170,9 +178,10 @@ namespace Uniftec.ProjetosWeb.Repository
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.Connection = con;
 
-                comando.CommandText = "SELECT usuario.id , usuario.primeironome , usuario.segundonome , " +
-                                      "usuario.funcao , usuario.servidores , usuario.email , usuario.senha " +
-                                      "FROM usuario " +
+                comando.CommandText = "SELECT * " +
+                                      "FROM usuario u " +
+                                      "INNER JOIN usuario_servidor us ON u.id = us.idusuario " +
+                                      "INNER JOIN servidor s ON us.idservidor = s.id " +
                                       "WHERE usuario.id = @id ";
 
                 comando.Parameters.AddWithValue("id", id);
@@ -207,11 +216,13 @@ namespace Uniftec.ProjetosWeb.Repository
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.Connection = con;
 
-                comando.CommandText = "SELECT usuario.id , usuario.primeironome , usuario.segundonome , " +
-                                      "usuario.funcao , usuario.servidores , usuario.email , usuario.senha , " +
-                                      "FROM usuario ";
+                comando.CommandText = "SELECT * " +
+                                      "FROM usuario u " +
+                                      "INNER JOIN usuario_servidor us ON u.id = us.idusuario " +
+                                      "INNER JOIN servidor s ON us.idservidor = s.id ";
 
                 var leitor = comando.ExecuteReader();
+                //leitor.Close();
 
                 while (leitor.Read())
                 {

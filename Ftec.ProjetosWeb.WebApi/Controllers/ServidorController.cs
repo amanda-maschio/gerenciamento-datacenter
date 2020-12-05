@@ -35,6 +35,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                 {
                     ServidoresModel.Add(new Servidor()
                     {
+                        Id = serv.Id,
                         Nome = serv.Nome,
                         EnderecoFisico = serv.EnderecoFisico,
                         Processador = serv.Processador,
@@ -45,6 +46,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
 
                         Sensor = new Sensor()
                         {
+                            Id = serv.Sensor.Id,
                             Temperatura = serv.Sensor.Temperatura,
                             Pressao = serv.Sensor.Pressao,
                             Altitude = serv.Sensor.Altitude,
@@ -87,6 +89,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                 {
                     servidorModel = new Servidor()
                     {
+                        Id = servidor.Id,
                         Nome = servidor.Nome,
                         EnderecoFisico = servidor.EnderecoFisico,
                         Processador = servidor.Processador,
@@ -97,6 +100,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
 
                         Sensor = new Sensor()
                         {
+                            Id = servidor.Sensor.Id,
                             Temperatura = servidor.Sensor.Temperatura,
                             Pressao = servidor.Sensor.Pressao,
                             Altitude = servidor.Sensor.Altitude,

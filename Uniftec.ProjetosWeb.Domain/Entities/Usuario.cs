@@ -9,6 +9,7 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
    public class Usuario
     {
         public Guid Id { get; set; }
+
         public string PrimeiroNome { get; set; }
 
         public string SegundoNome { get; set; }
@@ -33,5 +34,7 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
         {
             return (senha == Senha);
         }
+
+    
     }
 }

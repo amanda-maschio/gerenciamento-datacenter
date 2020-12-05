@@ -35,7 +35,15 @@ namespace Uniftec.ProjetosWeb.Application
 
         public List<Usuario> ProcurarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listaUsuario = usuarioRepository.SelecionarTodos();
+                return listaUsuario;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public Guid Alterar(Usuario usuario)

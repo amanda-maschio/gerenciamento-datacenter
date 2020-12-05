@@ -1,5 +1,4 @@
 ﻿using Ftec.WebAPI.Application;
-using Ftec.WebAPI.Infra.Repository;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Uniftec.ProjetosWeb.Domain.Repository;
+using Uniftec.ProjetosWeb.Repository;
 
 namespace Ftec.ProjetosWeb.WebApi.App_Start
 {

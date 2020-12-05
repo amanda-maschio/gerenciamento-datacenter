@@ -11,6 +11,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            //Exibe os Dashboards do Servidor selecionado
             return View();
         }
 

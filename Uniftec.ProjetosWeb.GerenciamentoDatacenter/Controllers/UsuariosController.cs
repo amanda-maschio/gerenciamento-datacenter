@@ -12,25 +12,19 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
     {
         public ActionResult Index()
         {
-
+            //Criar um novo usuário
             return View();
         }
 
         public ActionResult Gerenciar()
         {
-
-            return View();
-        }
-
-        public ActionResult Gravar(Models.Usuario usuario)
-        {
-
+            //Visualizar usuários cadastrados
             return View();
         }
 
         public ActionResult Editar()  
         {
-            
+            //Altera usuários cadastrados
             return View();
         }
     }

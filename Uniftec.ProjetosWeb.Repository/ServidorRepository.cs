@@ -34,8 +34,8 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Alterar o Servidor
                         comando.CommandText = "UPDATE public.servidor " +
-                            "SET nome=@nome, enderecofisico=@enderecofisico, processador=@processador, sistemaoperacional=@sistemaoperacional, macaddress=@macaddress, ipaddress=@ipaddress, descricao=@descricao" +
-                            "WHERE id=@id;";
+                                              " SET nome=@nome, enderecofisico=@enderecofisico, processador=@processador, sistemaoperacional=@sistemaoperacional, macaddress=@macaddress, ipaddress=@ipaddress, descricao=@descricao " +
+                                              " WHERE id=@id";
 
                         comando.Parameters.AddWithValue("id", servidor.Id);
                         comando.Parameters.AddWithValue("nome", servidor.Nome);
