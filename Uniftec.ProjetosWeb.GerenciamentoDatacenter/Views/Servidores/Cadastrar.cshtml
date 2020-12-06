@@ -69,7 +69,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block">Cadastrar Servidor</a></div>
+                                        <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" onclick="cria()">Cadastrar Servidor</a></div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
@@ -102,3 +102,29 @@
     <script src="~/Content/src/js/scripts.js"></script>
 </body>
 </html>
+
+
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+
+    function cria() {
+
+        var Servidor = new Object();
+        Servidor.Nome = $("#inputName").val();
+        Servidor.EnderecoFisico = $("#inputAddress").val();
+        Servidor.Processador = $("#inputProcessor").val();
+        Servidor.SistemaOperacional = $("#inputOperationalSystem").val();
+        Servidor.MacAddress = $("#inputMacAddress").val();
+        Servidor.IpAddress = $("#inputIpAddress").val();
+
+        var url = "/Servidores/ProcessarGravacaoPost";
+        var params = { Servidor: Servidor };
+        $.post(url, params, RetornoGravacao);
+        
+    }
+
+    function RetornoGravacao(retorno) {
+ 
+    }
+
+</script>

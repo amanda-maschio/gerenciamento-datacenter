@@ -42,7 +42,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         SistemaOperacional = serv.SistemaOperacional,
                         MacAddress = serv.MacAddress,
                         IpAddress = serv.IpAddress,
-                        Descricao = serv.Descricao,
 
                         Sensor = new Sensor()
                         {
@@ -96,7 +95,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         SistemaOperacional = servidor.SistemaOperacional,
                         MacAddress = servidor.MacAddress,
                         IpAddress = servidor.IpAddress,
-                        Descricao = servidor.Descricao,
 
                         Sensor = new Sensor()
                         {
@@ -143,7 +141,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     SistemaOperacional = servidor.SistemaOperacional,
                     MacAddress = servidor.MacAddress,
                     IpAddress = servidor.IpAddress,
-                    Descricao = servidor.Descricao,
 
                     Sensor = new Uniftec.ProjetosWeb.Domain.Entities.Sensor()
                     {
@@ -187,7 +184,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     SistemaOperacional = servidor.SistemaOperacional,
                     MacAddress = servidor.MacAddress,
                     IpAddress = servidor.IpAddress,
-                    Descricao = servidor.Descricao,
 
                     Sensor = new Uniftec.ProjetosWeb.Domain.Entities.Sensor()
                     {

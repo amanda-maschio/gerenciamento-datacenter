@@ -2,6 +2,7 @@
 @{
     Layout = null;
 }
+@model List<Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models.Servidor>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,34 +30,30 @@
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input type="hidden" name="usuario.Id" />
+                                                    <input type="hidden" name="usuario.Id" id="usuarioId" value="@ViewBag.usuario.Id" />
                                                     <label class="small mb-1" for="inputFirstName">Nome</label>
-                                                    <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Insira o nome" />
+                                                    <input class="form-control py-4" id="inputFirstName" value="@ViewBag.usuario.PrimeiroNome" type="text" placeholder="Insira o nome" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputLastName">Sobrenome</label>
-                                                    <input class="form-control py-4" id="inputLastName" type="text" placeholder="Insira o sobrenome" />
+                                                    <input class="form-control py-4" id="inputLastName" value="@ViewBag.usuario.SegundoNome" type="text" placeholder="Insira o sobrenome" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                            <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail" />
+                                            <input class="form-control py-4" id="inputEmailAddress" value="@ViewBag.usuario.Email" type="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail" />
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputFunction">Função</label>
                                                     <select class="form-control" id="inputFunction">
-                                                        <option value="N">Selecione</option>
-                                                        <option value="S">Suporte</option>
-                                                        <option value="G">Gerente</option>
+                                                        <option value="Null">Selecione</option>
+                                                        <option value="Suporte">Suporte</option>
+                                                        <option value="Gerente">Gerente</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -64,10 +61,10 @@
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputServerAccess">Acesso aos Servidores</label>
                                                     <select multiple="" class="form-control" id="inputServerAccess">
-                                                        <option value="1">Servidor 1</option>
-                                                        <option value="2">Servidor 2</option>
-                                                        <option value="3">Servidor 3</option>
-                                                        <option value="4">Servidor 4</option>
+                                                        @foreach (var servidor in Model)
+                                                        {
+                                                            <option value="@servidor.Id">SERVIDOR @servidor.Nome</option>
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -76,7 +73,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputPassword">Senha</label>
-                                                    <input class="form-control py-4" id="inputPassword" type="password" placeholder="Insira a senha" />
+                                                    <input class="form-control py-4" id="inputPassword" value="@ViewBag.usuario.Senha" type="password" placeholder="Insira a senha" />
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +109,24 @@
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
+    $("#inputFunction").val("@ViewBag.usuario.Funcao");
     function altera() {
 
+        var Usuario = new Object();
+        Usuario.Id = $("#usuarioId").val();
+        Usuario.PrimeiroNome = $("#inputFirstName").val();
+        Usuario.SegundoNome = $("#inputLastName").val();
+        Usuario.Email = $("#inputEmailAddress").val();
+        Usuario.Funcao = $("#inputFunction").val();
+        Usuario.Servidores = $("#inputServerAccess").val();
+        Usuario.Senha = $("#inputPassword").val();
+
+
+        var url = "/Usuarios/ProcessarUpdatePost";
+        var params = { Usuario: Usuario };
+        $.post(url, params, RetornoGravacao);
+    }
+
+    function RetornoGravacao(retorno) {
     }
 </script>

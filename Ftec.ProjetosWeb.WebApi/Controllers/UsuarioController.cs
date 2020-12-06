@@ -136,7 +136,7 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         SistemaOperacional = servidor.SistemaOperacional,
                         MacAddress = servidor.MacAddress,
                         IpAddress = servidor.IpAddress,
-                        Descricao = servidor.Descricao,
+
                         Sensor =
                         {
                             Id = servidor.Sensor.Id,

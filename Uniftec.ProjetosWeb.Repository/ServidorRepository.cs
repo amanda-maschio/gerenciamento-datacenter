@@ -34,7 +34,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Alterar o Servidor
                         comando.CommandText = "UPDATE public.servidor " +
-                                              " SET nome=@nome, enderecofisico=@enderecofisico, processador=@processador, sistemaoperacional=@sistemaoperacional, macaddress=@macaddress, ipaddress=@ipaddress, descricao=@descricao " +
+                                              " SET nome=@nome, enderecofisico=@enderecofisico, processador=@processador, sistemaoperacional=@sistemaoperacional, macaddress=@macaddress, ipaddress=@ipaddress " +
                                               " WHERE id=@id";
 
                         comando.Parameters.AddWithValue("id", servidor.Id);
@@ -44,7 +44,7 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Parameters.AddWithValue("sistemaoperacional", servidor.SistemaOperacional);
                         comando.Parameters.AddWithValue("macaddress", servidor.MacAddress);
                         comando.Parameters.AddWithValue("ipaddress", servidor.IpAddress);
-                        comando.Parameters.AddWithValue("descricao", servidor.Descricao);
+
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
@@ -129,8 +129,8 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Inserir o Servidor
                         comando.CommandText = "INSERT INTO public.servidor " +
-                                              "(id, nome, enderecofisico, processador, sistemaoperacional, macaddress, ipaddress, descricao)" +
-                                              "VALUES(@id, @nome, @enderecofisico, @processador, @sistemaoperacional, @macaddress, @ipaddress, @descricao);";
+                                              "(id, nome, enderecofisico, processador, sistemaoperacional, macaddress, ipaddress)" +
+                                              "VALUES(@id, @nome, @enderecofisico, @processador, @sistemaoperacional, @macaddress, @ipaddress);";
 
                         comando.Parameters.AddWithValue("id", servidor.Id);
                         comando.Parameters.AddWithValue("nome", servidor.Nome);
@@ -139,7 +139,7 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Parameters.AddWithValue("sistemaoperacional", servidor.SistemaOperacional);
                         comando.Parameters.AddWithValue("macaddress", servidor.MacAddress);
                         comando.Parameters.AddWithValue("ipaddress", servidor.IpAddress);
-                        comando.Parameters.AddWithValue("descricao", servidor.Descricao);
+
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
@@ -183,7 +183,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 comando.CommandText = "select servidor.id , servidor.nome , servidor.enderecofisico , " +
                                       " servidor.processador, servidor.sistemaoperacional , servidor.macaddress , " +
-                                      " servidor.ipaddress , servidor.descricao , sensor.id as sensorid , " +
+                                      " servidor.ipaddress , sensor.id as sensorid , " +
                                       " sensor.temperatura , sensor.pressao , sensor.altitude , sensor.umidade , sensor.data , sensor.pontoorvalho " +
                                       " from servidor, sensor " +
                                       " where sensor.servidorid = servidor.id " +
@@ -203,7 +203,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         SistemaOperacional = leitor["sistemaoperacional"].ToString(),
                         MacAddress = leitor["macaddress"].ToString(),
                         IpAddress = leitor["ipaddress"].ToString(),
-                        Descricao = leitor["descricao"].ToString(),
 
                         Sensor = new Sensor()
                         {
@@ -233,7 +232,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 comando.CommandText = "select servidor.id , servidor.nome , servidor.enderecofisico , " +
                                       " servidor.processador, servidor.sistemaoperacional , servidor.macaddress , " +
-                                      " servidor.ipaddress , servidor.descricao , sensor.id as sensorid , " +
+                                      " servidor.ipaddress , sensor.id as sensorid , " +
                                       " sensor.temperatura , sensor.pressao , sensor.altitude , sensor.umidade , sensor.data , sensor.pontoorvalho " +
                                       " from servidor, sensor " +
                                       " where sensor.servidorid = servidor.id ";
@@ -251,7 +250,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         SistemaOperacional = leitor["sistemaoperacional"].ToString(),
                         MacAddress = leitor["macaddress"].ToString(),
                         IpAddress = leitor["ipaddress"].ToString(),
-                        Descricao = leitor["descricao"].ToString(),
 
                         Sensor = new Sensor()
                         {

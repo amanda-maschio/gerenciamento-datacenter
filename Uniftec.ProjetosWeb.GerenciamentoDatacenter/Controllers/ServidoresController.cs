@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models;
 
 namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
 {
@@ -18,13 +19,31 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         public ActionResult Index()
         {
             //Exibir servidores cadastrados
-            return View();
+            var servidores = clienteHttp.Get<List<Servidor>>(@"servidor");
+            return View(servidores);
         }
 
         public ActionResult Cadastrar()
         {
-            //Insere novos servidores
+
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ProcessarGravacaoPost(Servidor servidor)
+        {
+            if (ModelState.IsValid)
+            {
+                servidor.Sensor = new Sensor();
+
+                var retorno = clienteHttp.Post<Servidor>(@"servidor/", servidor);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Index", servidor);
+            }
         }
 
     }

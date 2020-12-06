@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="~/Login/RecuperarSenha">Esqueceu a senha?</a>
-                                            <a class="btn btn-primary" href="#">Entrar</a>
+                                            <a class="btn btn-primary" onclick="cria()">Entrar</a>
                                         </div>
                                     </form>
                                 </div>
@@ -74,4 +74,23 @@
 </body>
 </html>
 
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
 
+    function cria() {
+        console.log("entrou");
+        var Cliente = new Object();
+        Cliente.Email = $("#inputEmailAddress").val();
+        Cliente.Password = $("#inputPassword").val();
+
+        var url = "/Login/Autenticar";
+        var params = { Cliente: Cliente };
+        $.post(url, params, RetornoGravacao);
+
+    }
+
+    function RetornoGravacao(retorno) {
+
+    }
+
+</script>

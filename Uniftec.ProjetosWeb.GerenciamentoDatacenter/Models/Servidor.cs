@@ -21,8 +21,6 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models
 
         public string IpAddress { get; set; }
 
-        public string Descricao { get; set; }
-
         public Sensor Sensor { get; set; }
 
         public Servidor()

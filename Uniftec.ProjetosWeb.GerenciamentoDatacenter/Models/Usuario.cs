@@ -9,6 +9,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models
     public class Usuario
     {
         public Guid Id { get; set; }
+
         public string PrimeiroNome { get; set; }
 
         public string SegundoNome { get; set; }

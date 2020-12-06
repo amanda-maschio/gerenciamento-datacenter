@@ -182,7 +182,7 @@ namespace Uniftec.ProjetosWeb.Repository
                                       "FROM usuario u " +
                                       "INNER JOIN usuario_servidor us ON u.id = us.idusuario " +
                                       "INNER JOIN servidor s ON us.idservidor = s.id " +
-                                      "WHERE usuario.id = @id ";
+                                      "WHERE u.id = @id ";
 
                 comando.Parameters.AddWithValue("id", id);
                 var leitor = comando.ExecuteReader();
@@ -218,8 +218,8 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 comando.CommandText = "SELECT * " +
                                       "FROM usuario u " +
-                                      "INNER JOIN usuario_servidor us ON u.id = us.idusuario " +
-                                      "INNER JOIN servidor s ON us.idservidor = s.id ";
+                                      "LEFT JOIN usuario_servidor us ON u.id = us.idusuario " +
+                                      "LEFT JOIN servidor s ON us.idservidor = s.id ";
 
                 var leitor = comando.ExecuteReader();
                 //leitor.Close();

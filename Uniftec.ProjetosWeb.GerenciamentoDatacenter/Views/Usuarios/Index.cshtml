@@ -2,6 +2,7 @@
 @{
     Layout = null;
 }
+@model List<Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models.Servidor>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,9 +56,9 @@
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputFunction">Função</label>
                                                     <select class="form-control" id="inputFunction">
-                                                        <option value="N">Selecione</option>
-                                                        <option value="S">Suporte</option>
-                                                        <option value="G">Gerente</option>
+                                                        <option value="Null">Selecione</option>
+                                                        <option value="Suporte">Suporte</option>
+                                                        <option value="Gerente">Gerente</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -65,10 +66,10 @@
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputServerAccess">Acesso aos Servidores</label>
                                                     <select multiple="" class="form-control" id="inputServerAccess">
-                                                        <option value="1">Servidor 1</option>
-                                                        <option value="2">Servidor 2</option>
-                                                        <option value="3">Servidor 3</option>
-                                                        <option value="4">Servidor 4</option>
+                                                        @foreach (var servidor in Model)
+                                                        {
+                                                            <option value="@servidor.Id">SERVIDOR @servidor.Nome</option>
+                                                        }
                                                     </select>
                                                 </div>
                                             </div>
@@ -131,6 +132,7 @@
     function cria() {
 
         if (confirmaSenha()) {
+
             var Usuario = new Object();
             Usuario.PrimeiroNome = $("#inputFirstName").val();
             Usuario.SegundoNome = $("#inputLastName").val();
@@ -138,9 +140,9 @@
             Usuario.Funcao = $("#inputFunction").val();
             Usuario.Servidores = $("#inputServerAccess").val();
             Usuario.Senha = $("#inputPassword").val();
-            
 
-            var url = "/Usuarios/Gravar";
+
+            var url = "/Usuarios/ProcessarGravacaoPost";
             var params = { Usuario: Usuario };
             $.post(url, params, RetornoGravacao);
         }
@@ -163,11 +165,11 @@
 
             $("#erro").html(retorno.MensagemTexto);
             $("#erro").show();
-          }
-          else {
+        }
+        else {
             $("#sucesso").html(retorno.MensagemTexto);
             $("#sucesso").show();
-          }
+        }
     }
 
 </script>
