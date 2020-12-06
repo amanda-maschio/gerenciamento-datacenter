@@ -36,16 +36,41 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                 //Realizar o adapter entre a entidade e o modelo de dados do dominio
                 foreach (var user in usuarios)
                 {
-                    UsuariosModel.Add(new Usuario()
+                    Usuario usuarioModel = new Usuario();
+                    usuarioModel.Id = user.Id;
+                    usuarioModel.PrimeiroNome = user.PrimeiroNome;
+                    usuarioModel.SegundoNome = user.SegundoNome;
+                    usuarioModel.Funcao = user.Funcao;
+                    usuarioModel.Servidores = user.Servidores;
+                    usuarioModel.Email = user.Email;
+                    usuarioModel.Senha = user.Senha;
+
+                    foreach (var servidor in user.ListaServidores)
                     {
-                        Id = user.Id,
-                        PrimeiroNome = user.PrimeiroNome,
-                        SegundoNome = user.SegundoNome,
-                        Funcao = user.Funcao,
-                        Servidores = user.Servidores,
-                        Email = user.Email,
-                        Senha = user.Senha
-                    });
+                        usuarioModel.ListaServidores.Add(new Servidor()
+                        {
+                            Id = servidor.Id,
+                            Nome = servidor.Nome,
+                            EnderecoFisico = servidor.EnderecoFisico,
+                            Processador = servidor.Processador,
+                            SistemaOperacional = servidor.SistemaOperacional,
+                            MacAddress = servidor.MacAddress,
+                            IpAddress = servidor.IpAddress,
+
+                            Sensor =
+                            {
+                                Id = servidor.Sensor.Id,
+                                Temperatura = servidor.Sensor.Temperatura,
+                                Pressao = servidor.Sensor.Pressao,
+                                Altitude = servidor.Sensor.Altitude,
+                                Umidade = servidor.Sensor.Umidade,
+                                Data = servidor.Sensor.Data,
+                                PontoOrvalho = servidor.Sensor.PontoOrvalho
+                            }
+
+                        });
+                    }
+                    UsuariosModel.Add(usuarioModel);
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, UsuariosModel);
             }
@@ -87,7 +112,32 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         Email = usuario.Email,
                         Senha = usuario.Senha
                     };
+                    foreach (var servidor in usuario.ListaServidores)
+                    {
+                        usuarioModel.ListaServidores.Add(new Servidor()
+                        {
+                            Id = servidor.Id,
+                            Nome = servidor.Nome,
+                            EnderecoFisico = servidor.EnderecoFisico,
+                            Processador = servidor.Processador,
+                            SistemaOperacional = servidor.SistemaOperacional,
+                            MacAddress = servidor.MacAddress,
+                            IpAddress = servidor.IpAddress,
 
+                            Sensor =
+                            {
+                                Id = servidor.Sensor.Id,
+                                Temperatura = servidor.Sensor.Temperatura,
+                                Pressao = servidor.Sensor.Pressao,
+                                Altitude = servidor.Sensor.Altitude,
+                                Umidade = servidor.Sensor.Umidade,
+                                Data = servidor.Sensor.Data,
+                                PontoOrvalho = servidor.Sensor.PontoOrvalho
+                            }
+
+                        });
+
+                    }
                     return Request.CreateResponse(HttpStatusCode.OK, usuarioModel);
                 }
                 else

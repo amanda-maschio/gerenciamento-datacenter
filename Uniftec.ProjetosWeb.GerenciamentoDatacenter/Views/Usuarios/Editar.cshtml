@@ -110,6 +110,18 @@
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
     $("#inputFunction").val("@ViewBag.usuario.Funcao");
+    var listaServidores = @Html.Raw(Json.Encode(ViewBag.usuario.ListaServidores));
+    var listaIds = "";
+    console.log(listaServidores);
+
+    for (i = 0; i < listaServidores.length; i++){
+       listaIds += listaServidores[i].Id+",";
+    }
+    console.log(listaIds);
+    $.each(listaIds.split(","), function (i, e) {
+        $("#inputServerAccess option[value='" + e + "']").prop("selected", true);
+    });
+    
     function altera() {
 
         var Usuario = new Object();
@@ -118,12 +130,16 @@
         Usuario.SegundoNome = $("#inputLastName").val();
         Usuario.Email = $("#inputEmailAddress").val();
         Usuario.Funcao = $("#inputFunction").val();
-        Usuario.Servidores = $("#inputServerAccess").val();
+        Usuario.Servidores = "n";
         Usuario.Senha = $("#inputPassword").val();
+        Usuario.ListaServidores = [];
 
+        $.each($("#inputServerAccess option:selected"), function () {
+            idsServidores.push($(this).val());
+        });
 
         var url = "/Usuarios/ProcessarUpdatePost";
-        var params = { Usuario: Usuario };
+        var params = { Usuario: Usuario, idsServidores: idsServidores };
         $.post(url, params, RetornoGravacao);
     }
 

@@ -35,9 +35,9 @@ namespace Uniftec.ProjetosWeb.Repository
                         //Alterar o Servidor
                         comando.CommandText = "UPDATE public.servidor " +
                                               " SET nome=@nome, enderecofisico=@enderecofisico, processador=@processador, sistemaoperacional=@sistemaoperacional, macaddress=@macaddress, ipaddress=@ipaddress " +
-                                              " WHERE id=@id";
+                                              " WHERE servidorid=@servidorid";
 
-                        comando.Parameters.AddWithValue("id", servidor.Id);
+                        comando.Parameters.AddWithValue("servidorid", servidor.Id);
                         comando.Parameters.AddWithValue("nome", servidor.Nome);
                         comando.Parameters.AddWithValue("enderecofisico", servidor.EnderecoFisico);
                         comando.Parameters.AddWithValue("processador", servidor.Processador);
@@ -91,8 +91,8 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Transaction = transacao;
 
                         //Excluir o Servidor
-                        comando.CommandText = "DELETE FROM public.servidor WHERE id=@id;";
-                        comando.Parameters.AddWithValue("id", id);
+                        comando.CommandText = "DELETE FROM public.servidor WHERE servidorid=@servidorid;";
+                        comando.Parameters.AddWithValue("servidorid", id);
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
@@ -129,10 +129,10 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Inserir o Servidor
                         comando.CommandText = "INSERT INTO public.servidor " +
-                                              "(id, nome, enderecofisico, processador, sistemaoperacional, macaddress, ipaddress)" +
-                                              "VALUES(@id, @nome, @enderecofisico, @processador, @sistemaoperacional, @macaddress, @ipaddress);";
+                                              "(servidorid, nome, enderecofisico, processador, sistemaoperacional, macaddress, ipaddress)" +
+                                              "VALUES(@servidorid, @nome, @enderecofisico, @processador, @sistemaoperacional, @macaddress, @ipaddress);";
 
-                        comando.Parameters.AddWithValue("id", servidor.Id);
+                        comando.Parameters.AddWithValue("servidorid", servidor.Id);
                         comando.Parameters.AddWithValue("nome", servidor.Nome);
                         comando.Parameters.AddWithValue("enderecofisico", servidor.EnderecoFisico);
                         comando.Parameters.AddWithValue("processador", servidor.Processador);
@@ -146,10 +146,10 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Inserir o Sensor
                         comando.CommandText = "INSERT INTO public.sensor " +
-                                               " (id, temperatura, pressao, altitude, umidade, data, servidorid, pontoorvalho) " +
-                                               " VALUES(@id, @temperatura, @pressao, @altitude, @umidade, @data, @servidorid, @pontoorvalho)";
+                                               " (sensorid, temperatura, pressao, altitude, umidade, data, servidorid, pontoorvalho) " +
+                                               " VALUES(@sensorid, @temperatura, @pressao, @altitude, @umidade, @data, @servidorid, @pontoorvalho)";
 
-                        comando.Parameters.AddWithValue("id", servidor.Sensor.Id);
+                        comando.Parameters.AddWithValue("sensorid", servidor.Sensor.Id);
                         comando.Parameters.AddWithValue("servidorid", servidor.Id);
                         comando.Parameters.AddWithValue("temperatura", servidor.Sensor.Temperatura);
                         comando.Parameters.AddWithValue("pressao", servidor.Sensor.Pressao);
@@ -181,22 +181,22 @@ namespace Uniftec.ProjetosWeb.Repository
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.Connection = con;
 
-                comando.CommandText = "select servidor.id , servidor.nome , servidor.enderecofisico , " +
+                comando.CommandText = "select servidor.servidorid , servidor.nome , servidor.enderecofisico , " +
                                       " servidor.processador, servidor.sistemaoperacional , servidor.macaddress , " +
-                                      " servidor.ipaddress , sensor.id as sensorid , " +
+                                      " servidor.ipaddress , sensor.sensorid , " +
                                       " sensor.temperatura , sensor.pressao , sensor.altitude , sensor.umidade , sensor.data , sensor.pontoorvalho " +
                                       " from servidor, sensor " +
-                                      " where sensor.servidorid = servidor.id " +
-                                      " and servidor.id = @id";
+                                      " where sensor.servidorid = servidor.servidorid " +
+                                      " and servidor.servidorid = @servidorid";
                 
-                comando.Parameters.AddWithValue("id", id);
+                comando.Parameters.AddWithValue("servidorid", id);
                 var leitor = comando.ExecuteReader();
 
                 while (leitor.Read())
                 {
                     serv = new Servidor()
                     {
-                        Id = Guid.Parse(leitor["id"].ToString()),
+                        Id = Guid.Parse(leitor["servidorid"].ToString()),
                         Nome = leitor["nome"].ToString(),
                         EnderecoFisico = leitor["enderecofisico"].ToString(),
                         Processador = leitor["processador"].ToString(),
@@ -230,12 +230,12 @@ namespace Uniftec.ProjetosWeb.Repository
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.Connection = con;
 
-                comando.CommandText = "select servidor.id , servidor.nome , servidor.enderecofisico , " +
+                comando.CommandText = "select servidor.servidorid , servidor.nome , servidor.enderecofisico , " +
                                       " servidor.processador, servidor.sistemaoperacional , servidor.macaddress , " +
-                                      " servidor.ipaddress , sensor.id as sensorid , " +
+                                      " servidor.ipaddress , sensor.sensorid , " +
                                       " sensor.temperatura , sensor.pressao , sensor.altitude , sensor.umidade , sensor.data , sensor.pontoorvalho " +
                                       " from servidor, sensor " +
-                                      " where sensor.servidorid = servidor.id ";
+                                      " where sensor.servidorid = servidor.servidorid ";
 
                 var leitor = comando.ExecuteReader();
 
@@ -243,7 +243,7 @@ namespace Uniftec.ProjetosWeb.Repository
                 {
                     servidores.Add( new Servidor()
                     {
-                        Id = Guid.Parse(leitor["id"].ToString()),
+                        Id = Guid.Parse(leitor["servidorid"].ToString()),
                         Nome = leitor["nome"].ToString(),
                         EnderecoFisico = leitor["enderecofisico"].ToString(),
                         Processador = leitor["processador"].ToString(),

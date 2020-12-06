@@ -40,9 +40,9 @@ namespace Uniftec.ProjetosWeb.Repository
                         //Alterar o Usuario
                         comando.CommandText = "UPDATE public.usuario " +
                                               "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha" +
-                                              "WHERE id=@id";
+                                              "WHERE usuarioid=@usuarioid";
 
-                        comando.Parameters.AddWithValue("id", usuario.Id);
+                        comando.Parameters.AddWithValue("usuarioid", usuario.Id);
                         comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
                         comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
                         comando.Parameters.AddWithValue("funcao", usuario.Funcao);
@@ -57,10 +57,10 @@ namespace Uniftec.ProjetosWeb.Repository
                         foreach (var serv in usuario.ListaServidores)
                         {
                             comando.CommandText = "INSERT INTO public.usuario_servidor " +
-                                                   " (idusuario, idservidor, id) " +
-                                                   " VALUES(@idusuario, @idservidor, @id)";
+                                                   " (idusuario, idservidor, usuarioservidorid) " +
+                                                   " VALUES(@idusuario, @idservidor, @usuarioservidorid)";
 
-                            comando.Parameters.AddWithValue("id", Guid.NewGuid());
+                            comando.Parameters.AddWithValue("usuarioservidorid", Guid.NewGuid());
                             comando.Parameters.AddWithValue("idusuario", usuario.Id);
                             comando.Parameters.AddWithValue("idservidor", serv.Id);
 
@@ -92,8 +92,8 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Transaction = transacao;
 
                         //Excluir o Usuario
-                        comando.CommandText = "DELETE FROM public.usuario WHERE id=@id;";
-                        comando.Parameters.AddWithValue("id", id);
+                        comando.CommandText = "DELETE FROM public.usuario WHERE usuarioid=@usuarioid;";
+                        comando.Parameters.AddWithValue("usuarioid", id);
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
@@ -130,10 +130,10 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Inserir o Usuario
                         comando.CommandText = "INSERT INTO public.usuario " +
-                                              "(id, primeironome, segundonome, funcao, servidores, email, senha)" +
-                                              "VALUES(@id, @primeironome, @segundonome, @funcao, @servidores, @email, @senha);";
+                                              "(usuarioid, primeironome, segundonome, funcao, servidores, email, senha)" +
+                                              "VALUES(@usuarioid, @primeironome, @segundonome, @funcao, @servidores, @email, @senha);";
 
-                        comando.Parameters.AddWithValue("id", usuario.Id);
+                        comando.Parameters.AddWithValue("usuarioid", usuario.Id);
                         comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
                         comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
                         comando.Parameters.AddWithValue("funcao", usuario.Funcao);
@@ -148,10 +148,10 @@ namespace Uniftec.ProjetosWeb.Repository
                         {
                             //Inserir o UsuarioServidor
                             comando.CommandText = "INSERT INTO public.usuario_servidor " +
-                                                   " (idusuario, idservidor, id) " +
-                                                   " VALUES(@idusuario, @idservidor, @id)";
+                                                   " (idusuario, idservidor, usuarioservidorid) " +
+                                                   " VALUES(@idusuario, @idservidor, @usuarioservidorid)";
 
-                            comando.Parameters.AddWithValue("id", Guid.NewGuid());
+                            comando.Parameters.AddWithValue("usuarioservidorid", Guid.NewGuid());
                             comando.Parameters.AddWithValue("idusuario", usuario.Id);
                             comando.Parameters.AddWithValue("idservidor", serv.Id);
 
@@ -180,11 +180,9 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 comando.CommandText = "SELECT * " +
                                       "FROM usuario u " +
-                                      "INNER JOIN usuario_servidor us ON u.id = us.idusuario " +
-                                      "INNER JOIN servidor s ON us.idservidor = s.id " +
-                                      "WHERE u.id = @id ";
+                                      "WHERE u.usuarioid = @usuarioid ";
 
-                comando.Parameters.AddWithValue("id", id);
+                comando.Parameters.AddWithValue("usuarioid", id);
                 var leitor = comando.ExecuteReader();
 
                 while (leitor.Read())
@@ -197,12 +195,48 @@ namespace Uniftec.ProjetosWeb.Repository
                         Servidores = leitor["servidores"].ToString(),
                         Email = leitor["email"].ToString(),
                         Senha = leitor["senha"].ToString(),
-                        Id = Guid.Parse(leitor["id"].ToString()),
-                      
+                        Id = Guid.Parse(leitor["usuarioid"].ToString()),
+                        
                     };
                 };
 
-                return usu;
+                leitor.Close();
+
+                comando.CommandText = "SELECT * " +
+                                      "FROM usuario u " +
+                                      "INNER JOIN usuario_servidor us ON u.usuarioid = us.idusuario " +
+                                      "INNER JOIN servidor s ON us.idservidor = s.servidorid " +
+                                      "INNER JOIN sensor se ON s.servidorid = se.servidorid " +
+                                      "WHERE u.usuarioid = @usuarioid ";
+
+                comando.Parameters.AddWithValue("usuarioid", id);
+                leitor = comando.ExecuteReader();
+
+                while (leitor.Read())
+                {
+                    usu.ListaServidores.Add(new Servidor()
+                    {
+                        Id = Guid.Parse(leitor["servidorid"].ToString()),
+                        Nome = leitor["nome"].ToString(),
+                        EnderecoFisico = leitor["enderecofisico"].ToString(),
+                        Processador = leitor["processador"].ToString(),
+                        SistemaOperacional = leitor["sistemaoperacional"].ToString(),
+                        MacAddress = leitor["macaddress"].ToString(),
+                        IpAddress = leitor["ipaddress"].ToString(),
+
+                        Sensor = new Sensor()
+                        {
+                            Id = Guid.Parse(leitor["sensorid"].ToString()),
+                            Temperatura = float.Parse(leitor["temperatura"].ToString()),
+                            Pressao = float.Parse(leitor["pressao"].ToString()),
+                            Altitude = float.Parse(leitor["altitude"].ToString()),
+                            Umidade = float.Parse(leitor["umidade"].ToString()),
+                            Data = Convert.ToDateTime(leitor["data"]),
+                            PontoOrvalho = float.Parse(leitor["pontoorvalho"].ToString()),
+                        }
+                    });
+                }
+                    return usu;
             }
         }
 
@@ -217,28 +251,66 @@ namespace Uniftec.ProjetosWeb.Repository
                 comando.Connection = con;
 
                 comando.CommandText = "SELECT * " +
-                                      "FROM usuario u " +
-                                      "LEFT JOIN usuario_servidor us ON u.id = us.idusuario " +
-                                      "LEFT JOIN servidor s ON us.idservidor = s.id ";
+                                      "FROM usuario u ";
 
                 var leitor = comando.ExecuteReader();
-                //leitor.Close();
 
                 while (leitor.Read())
                 {
                     usuarios.Add( new Usuario()
-                        {
+                    {
                             PrimeiroNome = leitor["primeironome"].ToString(),
                             SegundoNome = leitor["segundonome"].ToString(),
                             Funcao = leitor["funcao"].ToString(),
                             Servidores = leitor["servidores"].ToString(),
                             Email = leitor["email"].ToString(),
                             Senha = leitor["senha"].ToString(),
-                            Id = Guid.Parse(leitor["id"].ToString()),
+                            Id = Guid.Parse(leitor["usuarioid"].ToString()),
 
-                        });
+                    });
+
                 };
 
+                leitor.Close();
+
+                foreach (var usuario in usuarios)
+                {
+                    comando.CommandText = "SELECT * " +
+                                      "FROM usuario u " +
+                                      "INNER JOIN usuario_servidor us ON u.usuarioid = us.idusuario " +
+                                      "INNER JOIN servidor s ON us.idservidor = s.servidorid " +
+                                      "INNER JOIN sensor se ON s.servidorid = se.servidorid " +
+                                      "WHERE u.usuarioid = @usuarioid ";
+                
+                    comando.Parameters.AddWithValue("usuarioid", usuario.Id);
+                    leitor = comando.ExecuteReader();
+                
+                    while (leitor.Read())
+                    {
+                        usuario.ListaServidores.Add(new Servidor()
+                        {
+                            Id = Guid.Parse(leitor["servidorid"].ToString()),
+                            Nome = leitor["nome"].ToString(),
+                            EnderecoFisico = leitor["enderecofisico"].ToString(),
+                            Processador = leitor["processador"].ToString(),
+                            SistemaOperacional = leitor["sistemaoperacional"].ToString(),
+                            MacAddress = leitor["macaddress"].ToString(),
+                            IpAddress = leitor["ipaddress"].ToString(),
+
+                            Sensor = new Sensor()
+                            {
+                                Id = Guid.Parse(leitor["sensorid"].ToString()),
+                                Temperatura = float.Parse(leitor["temperatura"].ToString()),
+                                Pressao = float.Parse(leitor["pressao"].ToString()),
+                                Altitude = float.Parse(leitor["altitude"].ToString()),
+                                Umidade = float.Parse(leitor["umidade"].ToString()),
+                                Data = Convert.ToDateTime(leitor["data"]),
+                                PontoOrvalho = float.Parse(leitor["pontoorvalho"].ToString()),
+                            }
+                        });
+                    }
+                    leitor.Close();
+                }
                 return usuarios;
             }
         }

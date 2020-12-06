@@ -42,15 +42,17 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProcessarGravacaoPost(Usuario usuario)
+        public ActionResult ProcessarGravacaoPost(Usuario usuario, List<String> idsServidores)
         {
             if (ModelState.IsValid)
             {
-                usuario.ListaServidores = new List<Servidor>();
-                Servidor servidor = new Servidor();
-                usuario.ListaServidores.Add(servidor);
-                //pegar os valores do select multiple colocar num array, depois passar por parametro
-                //pegar essa lista e colocar dentro do usuario.ListaServidores
+                foreach (var idServidor in idsServidores)
+                {
+                    Guid guidIdServidor = Guid.Parse(idServidor);
+                    var servidor = clienteHttp.Get<Servidor>(string.Format(@"servidor/{0}", guidIdServidor.ToString()));
+                    usuario.ListaServidores.Add(servidor);
+                }
+
                 var id = clienteHttp.Post<Usuario>(@"usuario/", usuario);
 
                 return RedirectToAction("Index");
@@ -62,9 +64,14 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         }
 
         [HttpPost]
-        public ActionResult ProcessarUpdatePost(Usuario usuario)
+        public ActionResult ProcessarUpdatePost(Usuario usuario, List<String> idsServidores)
         {
-            usuario.ListaServidores = new List<Servidor>();
+            foreach (var idServidor in idsServidores)
+            {
+                Guid guidIdServidor = Guid.Parse(idServidor);
+                var servidor = clienteHttp.Get<Servidor>(string.Format(@"servidor/{0}", guidIdServidor.ToString()));
+                usuario.ListaServidores.Add(servidor);
+            }
 
             var id = clienteHttp.Put<Usuario>(@"usuario/", usuario.Id, usuario);
 
