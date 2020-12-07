@@ -234,6 +234,33 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     Senha = usuario.Senha
                 };
 
+                foreach (var servidor in usuario.ListaServidores)
+                {
+                    usuarioDomain.ListaServidores.Add(new Uniftec.ProjetosWeb.Domain.Entities.Servidor()
+                    {
+                        Id = servidor.Id,
+                        Nome = servidor.Nome,
+                        EnderecoFisico = servidor.EnderecoFisico,
+                        Processador = servidor.Processador,
+                        SistemaOperacional = servidor.SistemaOperacional,
+                        MacAddress = servidor.MacAddress,
+                        IpAddress = servidor.IpAddress,
+
+                        Sensor =
+                        {
+                            Id = servidor.Sensor.Id,
+                            Temperatura = servidor.Sensor.Temperatura,
+                            Pressao = servidor.Sensor.Pressao,
+                            Altitude = servidor.Sensor.Altitude,
+                            Umidade = servidor.Sensor.Umidade,
+                            Data = servidor.Sensor.Data,
+                            PontoOrvalho = servidor.Sensor.PontoOrvalho
+                        }
+
+                    });
+
+                }
+               
                 usuarioApplication.Alterar(usuarioDomain);
 
                 return Request.CreateErrorResponse(HttpStatusCode.OK, Convert.ToString(id));

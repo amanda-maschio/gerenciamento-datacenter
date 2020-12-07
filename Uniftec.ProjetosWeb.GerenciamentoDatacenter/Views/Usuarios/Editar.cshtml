@@ -80,6 +80,9 @@
                                         <a class="btn btn-warning btn-block" onclick="altera()">Alterar</a>
                                     </form>
                                 </div>
+                                <div class="card-footer text-center">
+                                    <div class="small"><a href="~/Usuarios/Gerenciar">Retornar para Página Anterior</a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -123,6 +126,7 @@
     });
     
     function altera() {
+        var idsServidores = [];
 
         var Usuario = new Object();
         Usuario.Id = $("#usuarioId").val();

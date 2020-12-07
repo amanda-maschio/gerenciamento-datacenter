@@ -36,10 +36,11 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.CommandText = "DELETE FROM public.usuario_servidor WHERE idusuario=@idusuario";
                         comando.Parameters.AddWithValue("idusuario", usuario.Id);
                         comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
 
                         //Alterar o Usuario
                         comando.CommandText = "UPDATE public.usuario " +
-                                              "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha" +
+                                              "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha " +
                                               "WHERE usuarioid=@usuarioid";
 
                         comando.Parameters.AddWithValue("usuarioid", usuario.Id);
@@ -52,6 +53,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
 
                         //Inserir os UsuarioServidor
                         foreach (var serv in usuario.ListaServidores)
@@ -65,6 +67,7 @@ namespace Uniftec.ProjetosWeb.Repository
                             comando.Parameters.AddWithValue("idservidor", serv.Id);
 
                             comando.ExecuteNonQuery();
+                            comando.Parameters.Clear();
                         }
 
                         transacao.Commit();
@@ -91,16 +94,17 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Connection = con;
                         comando.Transaction = transacao;
 
+                        //Excluir o UsuarioServidor
+                        comando.CommandText = "DELETE FROM public.usuario_servidor WHERE idusuario=@idusuario";
+                        comando.Parameters.AddWithValue("idusuario", id);
+                        comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
+
                         //Excluir o Usuario
                         comando.CommandText = "DELETE FROM public.usuario WHERE usuarioid=@usuarioid;";
                         comando.Parameters.AddWithValue("usuarioid", id);
 
                         //Executamos o comando
-                        comando.ExecuteNonQuery();
-
-                        //Excluir o UsuarioServidor
-                        comando.CommandText = "DELETE FROM public.usuario_servidor WHERE idusuario=@idusuario";
-                        comando.Parameters.AddWithValue("idusuario", id);
                         comando.ExecuteNonQuery();
 
                         transacao.Commit();
@@ -140,9 +144,10 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Parameters.AddWithValue("servidores", usuario.Servidores);
                         comando.Parameters.AddWithValue("email", usuario.Email);
                         comando.Parameters.AddWithValue("senha", usuario.Senha);
-
+                        
                         //Executamos o comando
                         comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
 
                         foreach (var serv in usuario.ListaServidores)
                         {
@@ -156,6 +161,7 @@ namespace Uniftec.ProjetosWeb.Repository
                             comando.Parameters.AddWithValue("idservidor", serv.Id);
 
                             comando.ExecuteNonQuery();
+                            comando.Parameters.Clear();
                         }
 
                         transacao.Commit();

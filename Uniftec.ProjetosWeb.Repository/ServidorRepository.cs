@@ -48,6 +48,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
 
                         //Alterar o Sensor
                         comando.CommandText = "UPDATE public.sensor " +
@@ -90,6 +91,12 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Connection = con;
                         comando.Transaction = transacao;
 
+                        //Excluir o Sensor
+                        comando.CommandText = "DELETE FROM public.sensor WHERE servidorid=@servidorid";
+                        comando.Parameters.AddWithValue("servidorid", id);
+                        comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
+
                         //Excluir o Servidor
                         comando.CommandText = "DELETE FROM public.servidor WHERE servidorid=@servidorid;";
                         comando.Parameters.AddWithValue("servidorid", id);
@@ -97,12 +104,8 @@ namespace Uniftec.ProjetosWeb.Repository
                         //Executamos o comando
                         comando.ExecuteNonQuery();
 
-                        //Excluir o Sensor
-                        comando.CommandText = "DELETE FROM public.sensor WHERE servidorid=@servidorid";
-                        comando.Parameters.AddWithValue("servidorid", id);
-                        comando.ExecuteNonQuery();
-
                         transacao.Commit();
+
                     }
                     catch(Exception e)
                     {
@@ -143,6 +146,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Executamos o comando
                         comando.ExecuteNonQuery();
+                        comando.Parameters.Clear();
 
                         //Inserir o Sensor
                         comando.CommandText = "INSERT INTO public.sensor " +
