@@ -33,7 +33,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         {
             try
             {
-                clienteHttp.AuthenticationPost(cliente.Email, cliente.Password);
+                clienteHttp.AuthenticationPost(cliente.Username, cliente.Password);
                 //Redireciona para a pagina principal
                 return RedirectToAction("index", "Home");
             }

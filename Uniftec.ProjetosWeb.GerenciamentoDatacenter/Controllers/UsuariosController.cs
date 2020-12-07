@@ -55,7 +55,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
 
                 var id = clienteHttp.Post<Usuario>(@"usuario/", usuario);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Gerenciar", "Usuarios");
             }
             else
             {
@@ -75,7 +75,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
 
             var id = clienteHttp.Put<Usuario>(@"usuario/", usuario.Id, usuario);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Gerenciar", "Usuarios");
         }
     }
 }

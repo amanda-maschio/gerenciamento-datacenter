@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,16 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
                 HttpResponseMessage response = client.PutAsJsonAsync(action + id.ToString(), data).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    var sucesso = response.Content.ReadAsAsync<Guid>().Result;
+                    var sucesso = new Guid();
+                    try
+                    {
+                        sucesso = response.Content.ReadAsAsync<Guid>().Result;
+                    }
+                    catch (AggregateException e)
+                    {
+
+                    }
+
                     return sucesso;
                 }
                 else
@@ -45,14 +55,25 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
         {
             using (var client = new HttpClient())
             {
+                
                 client.BaseAddress = new Uri(baseAPI);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                
                 HttpResponseMessage response = client.PostAsJsonAsync(action, data).Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    var sucesso = response.Content.ReadAsAsync<Guid>().Result;
+
+                    var sucesso = new Guid();
+                    try
+                    {
+                        sucesso = response.Content.ReadAsAsync<Guid>().Result;
+                    }
+                    catch (AggregateException e)
+                    {
+
+                    }
+                    
                     return sucesso;
                 }
                 else
@@ -112,7 +133,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
         }
     
 
-        public string AuthenticationPost(string email, string password)
+        public string AuthenticationPost(string username, string password)
         {
             using (var client = new HttpClient())
             {
@@ -120,7 +141,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
                 client.DefaultRequestHeaders.Accept.Clear();
                 var request = new HttpRequestMessage(HttpMethod.Post, (this.baseAPI + "token"));
                 request.Content = new FormUrlEncodedContent(new Dictionary<string, string> {
-                            { "email", email},
+                            { "username", username},
                             { "password", password },
                             { "grant_type", "password" }
                         });
@@ -137,7 +158,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
                     Cliente cliente = new Cliente()
                     {
                         Password = password,
-                        Email = email,
+                        Username = username,
                         Token = token
                     };
                     HttpContext.Current.Session["user"] = cliente;

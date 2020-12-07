@@ -89,7 +89,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Dashboard / Servidor @Model.Nome</li>
+
+                        <li class="breadcrumb-item active"><p style="margin-bottom:0rem"> <a href="~/Servidores/Index">Servidores Ativos</a> / Dashboard / Servidor @Model.Nome</p></li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
@@ -261,10 +262,10 @@
                                             },
 
                                             series: [{
-                                                name: 'Speed',
+                                                name: 'Temperatura',
                                                 data: [80],
                                                 tooltip: {
-                                                    valueSuffix: ' km/h'
+                                                    valueSuffix: ' ºC'
                                                 }
                                             }]
 
@@ -569,7 +570,7 @@
                                         });
 
                                         var model = @Html.Raw(Json.Encode(Model));
-                                        var pontoorvalho = model.Sensor.PontoOrvalho;
+                                        var pontoorvalho = Math.trunc(model.Sensor.PontoOrvalho);
 
                                         Highcharts.chart('container2', {
                                             xAxis: {

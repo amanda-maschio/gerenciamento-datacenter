@@ -109,22 +109,62 @@
 
     function cria() {
 
-        var Servidor = new Object();
-        Servidor.Nome = $("#inputName").val();
-        Servidor.EnderecoFisico = $("#inputAddress").val();
-        Servidor.Processador = $("#inputProcessor").val();
-        Servidor.SistemaOperacional = $("#inputOperationalSystem").val();
-        Servidor.MacAddress = $("#inputMacAddress").val();
-        Servidor.IpAddress = $("#inputIpAddress").val();
+        if (validaDados()) {
+            var Servidor = new Object();
+            Servidor.Nome = $("#inputName").val();
+            Servidor.EnderecoFisico = $("#inputAddress").val();
+            Servidor.Processador = $("#inputProcessor").val();
+            Servidor.SistemaOperacional = $("#inputOperationalSystem").val();
+            Servidor.MacAddress = $("#inputMacAddress").val();
+            Servidor.IpAddress = $("#inputIpAddress").val();
 
-        var url = "/Servidores/ProcessarGravacaoPost";
-        var params = { Servidor: Servidor };
-        $.post(url, params, RetornoGravacao);
-        
+            var url = "/Servidores/ProcessarGravacaoPost";
+            var params = { Servidor: Servidor };
+            $.post(url, params, RetornoGravacao);
+        }
     }
 
     function RetornoGravacao(retorno) {
- 
+
+        if (retorno.MensagemErro) {
+
+            alert("Ocorreu um erro.");
+        }
+        else {
+            alert("Gravado com sucesso!");
+        }
+    }
+
+    function validaDados() {
+
+        if ($("#inputName").val() == "") {
+
+            alert("Informe o nome.");
+            return false;
+        } else if ($("#inputAddress").val() == "") {
+
+            alert("Informe o endereço.");
+            return false;
+        } else if ($("#inputProcessor").val() == "") {
+
+            alert("Informe o processador");
+            return false;
+        } else if ($("#inputOperationalSystem").val() == "") {
+
+            alert("Informe o sistema operacional.");
+            return false;
+        } else if ($("#inputMacAddress").val() == "") {
+
+            alert("Informe o mac address.");
+            return false;
+        } else if ($("#inputIpAddress").val() == "") {
+
+            alert("Informe o ip address.");
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
 </script>

@@ -15,9 +15,9 @@ namespace Ftec.WebAPI.Application
         {
             this.clienteRepository = clienteRepository;
         }
-        public bool Autenticar(string email, string password)
+        public bool Autenticar(string username, string password)
         {
-            var client = this.clienteRepository.Find(email.ToLower());
+            var client = this.clienteRepository.Find(username.ToLower());
             if (client == null)
             {
                 throw new ApplicationException("Usuario não encontrado");
@@ -33,9 +33,9 @@ namespace Ftec.WebAPI.Application
             }
         }
 
-        public void TrocarSenha(string email, string newPassword)
+        public void TrocarSenha(string username, string newPassword)
         {
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(username))
             {
                 throw new ApplicationException("E-mail deve ser informado");
             }
@@ -45,7 +45,7 @@ namespace Ftec.WebAPI.Application
                 throw new ApplicationException("Nova senha deve ser informada");
             }
 
-            var client = this.clienteRepository.Find(email);
+            var client = this.clienteRepository.Find(username);
             client.Password = newPassword;
 
             this.clienteRepository.Update(client);

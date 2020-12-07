@@ -38,7 +38,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
 
                 var retorno = clienteHttp.Post<Servidor>(@"servidor/", servidor);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Servidores");
             }
             else
             {

@@ -72,7 +72,7 @@ namespace Uniftec.ProjetosWeb.Repository
                     {
                         Id = Guid.Parse(reader["id"].ToString()),
                         Password = reader["password"].ToString(),
-                        Email = reader["email"].ToString()
+                        Username = reader["username"].ToString()
                     };
                 }
                 reader.Close();
@@ -81,7 +81,7 @@ namespace Uniftec.ProjetosWeb.Repository
             }
         }
 
-        public Cliente Find(string email)
+        public Cliente Find(string username)
         {
             Cliente cliente = null;
 
@@ -91,8 +91,8 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = @"SELECT * FROM cliente WHERE email=@email";
-                cmd.Parameters.AddWithValue("email", email);
+                cmd.CommandText = @"SELECT * FROM cliente WHERE username=@username";
+                cmd.Parameters.AddWithValue("username", username);
                 var reader = cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -100,7 +100,7 @@ namespace Uniftec.ProjetosWeb.Repository
                     cliente = new Cliente();
                     cliente.Id = Guid.Parse(reader["id"].ToString());
                     cliente.Password = reader["password"].ToString();
-                    cliente.Email = reader["email"].ToString();
+                    cliente.Username = reader["username"].ToString();
                 }
                 reader.Close();
 
@@ -126,7 +126,7 @@ namespace Uniftec.ProjetosWeb.Repository
                     Cliente cliente = new Cliente();
                     cliente.Id = Guid.Parse(reader["id"].ToString());
                     cliente.Password = reader["password"].ToString();
-                    cliente.Email = reader["email"].ToString();
+                    cliente.Username = reader["username"].ToString();
 
                     clientes.Add(cliente);
                 }
@@ -149,10 +149,10 @@ namespace Uniftec.ProjetosWeb.Repository
                         {
                             Connection = con,
                             Transaction = trans,
-                            CommandText = @"INSERT into cliente (id, email, password) values(@id, @email, @password)"
+                            CommandText = @"INSERT into cliente (id, username, password) values(@id, @username, @password)"
                         };
                         cmd.Parameters.AddWithValue("id", cliente.Id);
-                        cmd.Parameters.AddWithValue("email", cliente.Email);
+                        cmd.Parameters.AddWithValue("username", cliente.Username);
                         cmd.Parameters.AddWithValue("password", cliente.Password);
                         cmd.ExecuteNonQuery();
 
@@ -184,9 +184,9 @@ namespace Uniftec.ProjetosWeb.Repository
                         NpgsqlCommand cmd = new NpgsqlCommand();
                         cmd.Connection = con;
                         cmd.Transaction = trans;
-                        cmd.CommandText = @"UPDATE cliente SET email=@email, password=@password WHERE Id=@id";
+                        cmd.CommandText = @"UPDATE cliente SET username=@username, password=@password WHERE Id=@id";
                         cmd.Parameters.AddWithValue("id", cliente.Id);
-                        cmd.Parameters.AddWithValue("email", cliente.Email);
+                        cmd.Parameters.AddWithValue("username", cliente.Username);
                         cmd.Parameters.AddWithValue("password", cliente.Password);
                         cmd.ExecuteNonQuery();
 

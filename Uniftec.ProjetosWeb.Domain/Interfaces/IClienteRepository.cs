@@ -13,11 +13,11 @@ namespace Uniftec.ProjetosWeb.Domain.Repository
 
         Cliente Find(Guid ID);
 
-        Cliente Find(string email);
+        Cliente Find(string username);
 
         List<Cliente> FindAll();
 
-        Guid Update(Cliente usuario);
+        Guid Update(Cliente cliente);
 
         bool Delete(Guid id);
     }

@@ -17,12 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-primary">
-    <div class="alert alert-success" role="alert" id="sucesso">
-        This is a success alert—check it out!
-    </div>
-    <div class="alert alert-danger" role="alert" id="erro">
-        This is a danger alert—check it out!
-    </div>
+
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -124,14 +119,15 @@
 
 <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
-    $(document).ready(function () {
-        $("#sucesso").hide();
-        $("#erro").hide();
-    });
 
     function cria() {
 
-        if (confirmaSenha()) {
+        var idsServidores = [];
+        $.each($("#inputServerAccess option:selected"), function () {
+            idsServidores.push($(this).val());
+        });
+
+        if (confirmaSenha() && isEmpty(idsServidores) && validaDados()) {
             var idsServidores = [];
 
             var Usuario = new Object();
@@ -143,11 +139,6 @@
             Usuario.Senha = $("#inputPassword").val();
             Usuario.ListaServidores = [];
 
-            $.each($("#inputServerAccess option:selected"), function () {
-                idsServidores.push($(this).val());
-            });
-
-
             var url = "/Usuarios/ProcessarGravacaoPost";
             var params = { Usuario: Usuario, idsServidores: idsServidores };
             console.log(params);
@@ -158,7 +149,7 @@
     function confirmaSenha() {
 
         if ($("#inputPassword").val() != $("#inputConfirmPassword").val()) {
-            console.log("entrou");
+          
             alert("As senhas não coincidem!");
             return false;
         } else {
@@ -167,16 +158,55 @@
     }
 
     function RetornoGravacao(retorno) {
-        console.log(retorno);
+    
         if (retorno.MensagemErro) {
 
-            $("#erro").html(retorno.MensagemTexto);
-            $("#erro").show();
+            alert("Ocorreu um erro.");
         }
         else {
-            $("#sucesso").html(retorno.MensagemTexto);
-            $("#sucesso").show();
+            alert("Gravado com sucesso!");
         }
     }
 
+    function isEmpty(idsServidores) {
+        if (idsServidores.length == 0) {
+            alert("Selecione ao menos um Servidor!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function validaDados() {
+
+        if ($("#inputFirstName").val() == "") {
+
+            alert("Informe o nome.");
+            return false;
+
+        } else if ($("#inputLastName").val() == "") {
+
+            alert("Informe o sobrenome.");
+            return false;
+
+        } else if ($("#inputEmailAddress").val() == "") {
+
+            alert("Informe o e-mail.");
+            return false;
+
+        } else if ($("#inputFunction").val() == "Null" || $("#inputFunction").val() == "") {
+
+            alert("Selecione uma função.");
+            return false;
+
+        } else if ($("#inputPassword").val() == "") {
+
+            alert("Informe a senha.");
+            return false;
+
+        } else {
+            return true;
+        }
+
+    }
 </script>

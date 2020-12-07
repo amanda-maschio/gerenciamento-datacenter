@@ -126,27 +126,93 @@
     });
     
     function altera() {
+
+
         var idsServidores = [];
-
-        var Usuario = new Object();
-        Usuario.Id = $("#usuarioId").val();
-        Usuario.PrimeiroNome = $("#inputFirstName").val();
-        Usuario.SegundoNome = $("#inputLastName").val();
-        Usuario.Email = $("#inputEmailAddress").val();
-        Usuario.Funcao = $("#inputFunction").val();
-        Usuario.Servidores = "n";
-        Usuario.Senha = $("#inputPassword").val();
-        Usuario.ListaServidores = [];
-
         $.each($("#inputServerAccess option:selected"), function () {
             idsServidores.push($(this).val());
         });
 
-        var url = "/Usuarios/ProcessarUpdatePost";
-        var params = { Usuario: Usuario, idsServidores: idsServidores };
-        $.post(url, params, RetornoGravacao);
+        if (isEmpty(idsServidores) && validaDados()) {
+
+            var Usuario = new Object();
+            Usuario.Id = $("#usuarioId").val();
+            Usuario.PrimeiroNome = $("#inputFirstName").val();
+            Usuario.SegundoNome = $("#inputLastName").val();
+            Usuario.Email = $("#inputEmailAddress").val();
+            Usuario.Funcao = $("#inputFunction").val();
+            Usuario.Servidores = "n";
+            Usuario.Senha = $("#inputPassword").val();
+            Usuario.ListaServidores = [];
+
+            //console.log("idsServidores tamanho: " + idsServidores.length);
+
+            var url = "/Usuarios/ProcessarUpdatePost";
+            var params = { Usuario: Usuario, idsServidores: idsServidores };
+            $.post(url, params, RetornoGravacao);
+        }
+    }
+
+    function confirmaSenha() {
+
+        if ($("#inputPassword").val() != $("#inputConfirmPassword").val()) {
+
+            alert("As senhas não coincidem!");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     function RetornoGravacao(retorno) {
+       
+        if (retorno.MensagemErro) {
+            alert("Ocorreu um erro.");
+        }
+        else {
+            alert("Alterado com sucesso!");
+        }
+    }
+
+    function isEmpty(idsServidores) {
+        if (idsServidores.length == 0) {
+            alert("Selecione ao menos um Servidor!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function validaDados() {
+
+        if ($("#inputFirstName").val() == "") {
+
+            alert("Informe o nome.");
+            return false;
+
+        } else if ($("#inputLastName").val() == "") {
+
+            alert("Informe o sobrenome.");
+            return false;
+
+        } else if ($("#inputEmailAddress").val() == "") {
+
+            alert("Informe o e-mail.");
+            return false;
+
+        } else if ($("#inputFunction").val() == "Null" || $("#inputFunction").val() == "") {
+
+            alert("Selecione uma função.");
+            return false;
+
+        } else if ($("#inputPassword").val() == "") {
+
+            alert("Informe a senha.");
+            return false;
+
+        } else {
+            return true;
+        }
+
     }
 </script>
