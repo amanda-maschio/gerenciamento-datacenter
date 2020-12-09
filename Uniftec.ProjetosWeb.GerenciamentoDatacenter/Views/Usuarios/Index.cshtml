@@ -128,7 +128,7 @@
         });
 
         if (confirmaSenha() && isEmpty(idsServidores) && validaDados()) {
-            var idsServidores = [];
+           // var idsServidores = [];
 
             var Usuario = new Object();
             Usuario.PrimeiroNome = $("#inputFirstName").val();
@@ -143,6 +143,7 @@
             var params = { Usuario: Usuario, idsServidores: idsServidores };
             console.log(params);
             $.post(url, params, RetornoGravacao);
+
         }
     }
 
