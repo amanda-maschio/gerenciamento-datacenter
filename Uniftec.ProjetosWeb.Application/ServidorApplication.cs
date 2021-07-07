@@ -17,7 +17,6 @@ namespace Uniftec.ProjetosWeb.Application
             this.servidorRepository = servidorRepository;
         }
 
-
         public Guid Inserir(Servidor servidor)
         {
             try

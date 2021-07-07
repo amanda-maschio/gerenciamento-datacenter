@@ -21,6 +21,8 @@ namespace Ftec.ProjetosWeb.WebApi.Models
 
         public float PontoOrvalho { get; set; }
 
+        public string MacAddressServidor { get; set; }
+
         public Sensor()
         {
             Id = Guid.NewGuid();

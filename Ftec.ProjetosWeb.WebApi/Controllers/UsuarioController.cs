@@ -41,7 +41,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     usuarioModel.PrimeiroNome = user.PrimeiroNome;
                     usuarioModel.SegundoNome = user.SegundoNome;
                     usuarioModel.Funcao = user.Funcao;
-                    usuarioModel.Servidores = user.Servidores;
                     usuarioModel.Email = user.Email;
                     usuarioModel.Senha = user.Senha;
 
@@ -56,17 +55,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                             SistemaOperacional = servidor.SistemaOperacional,
                             MacAddress = servidor.MacAddress,
                             IpAddress = servidor.IpAddress,
-
-                            Sensor =
-                            {
-                                Id = servidor.Sensor.Id,
-                                Temperatura = servidor.Sensor.Temperatura,
-                                Pressao = servidor.Sensor.Pressao,
-                                Altitude = servidor.Sensor.Altitude,
-                                Umidade = servidor.Sensor.Umidade,
-                                Data = servidor.Sensor.Data,
-                                PontoOrvalho = servidor.Sensor.PontoOrvalho
-                            }
 
                         });
                     }
@@ -108,7 +96,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         PrimeiroNome = usuario.PrimeiroNome,
                         SegundoNome = usuario.SegundoNome,
                         Funcao = usuario.Funcao,
-                        Servidores = usuario.Servidores,
                         Email = usuario.Email,
                         Senha = usuario.Senha
                     };
@@ -123,17 +110,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                             SistemaOperacional = servidor.SistemaOperacional,
                             MacAddress = servidor.MacAddress,
                             IpAddress = servidor.IpAddress,
-
-                            Sensor =
-                            {
-                                Id = servidor.Sensor.Id,
-                                Temperatura = servidor.Sensor.Temperatura,
-                                Pressao = servidor.Sensor.Pressao,
-                                Altitude = servidor.Sensor.Altitude,
-                                Umidade = servidor.Sensor.Umidade,
-                                Data = servidor.Sensor.Data,
-                                PontoOrvalho = servidor.Sensor.PontoOrvalho
-                            }
 
                         });
 
@@ -169,7 +145,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     PrimeiroNome = usuario.PrimeiroNome,
                     SegundoNome = usuario.SegundoNome,
                     Funcao = usuario.Funcao,
-                    Servidores = usuario.Servidores,
                     Email = usuario.Email,
                     Senha = usuario.Senha,
   
@@ -186,17 +161,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         SistemaOperacional = servidor.SistemaOperacional,
                         MacAddress = servidor.MacAddress,
                         IpAddress = servidor.IpAddress,
-
-                        Sensor =
-                        {
-                            Id = servidor.Sensor.Id,
-                            Temperatura = servidor.Sensor.Temperatura,
-                            Pressao = servidor.Sensor.Pressao,
-                            Altitude = servidor.Sensor.Altitude,
-                            Umidade = servidor.Sensor.Umidade,
-                            Data = servidor.Sensor.Data,
-                            PontoOrvalho = servidor.Sensor.PontoOrvalho
-                        }
 
                     });
 
@@ -229,7 +193,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     PrimeiroNome = usuario.PrimeiroNome,
                     SegundoNome = usuario.SegundoNome,
                     Funcao = usuario.Funcao,
-                    Servidores = usuario.Servidores,
                     Email = usuario.Email,
                     Senha = usuario.Senha
                 };
@@ -245,17 +208,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         SistemaOperacional = servidor.SistemaOperacional,
                         MacAddress = servidor.MacAddress,
                         IpAddress = servidor.IpAddress,
-
-                        Sensor =
-                        {
-                            Id = servidor.Sensor.Id,
-                            Temperatura = servidor.Sensor.Temperatura,
-                            Pressao = servidor.Sensor.Pressao,
-                            Altitude = servidor.Sensor.Altitude,
-                            Umidade = servidor.Sensor.Umidade,
-                            Data = servidor.Sensor.Data,
-                            PontoOrvalho = servidor.Sensor.PontoOrvalho
-                        }
 
                     });
 

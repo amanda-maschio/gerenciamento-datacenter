@@ -10,8 +10,11 @@ namespace Uniftec.ProjetosWeb.Domain.Repository
     public interface IUsuarioRepository
     {
         void Inserir(Usuario usuario);
+
         void Excluir(Guid id);
+
         void Alterar(Usuario usuario);
+
         Usuario Selecionar(Guid id);
 
         List<Usuario> SelecionarTodos();

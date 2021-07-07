@@ -73,7 +73,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="small mb-1" for="inputPassword">Senha</label>
-                                                    <input class="form-control py-4" id="inputPassword" value="@ViewBag.usuario.Senha" type="password" placeholder="Insira a senha" />
+                                                    <input class="form-control py-4" id="inputPassword" type="password" placeholder="Insira a senha" />
                                                 </div>
                                             </div>
                                         </div>
@@ -115,18 +115,16 @@
     $("#inputFunction").val("@ViewBag.usuario.Funcao");
     var listaServidores = @Html.Raw(Json.Encode(ViewBag.usuario.ListaServidores));
     var listaIds = "";
-    console.log(listaServidores);
 
     for (i = 0; i < listaServidores.length; i++){
        listaIds += listaServidores[i].Id+",";
     }
-    console.log(listaIds);
+
     $.each(listaIds.split(","), function (i, e) {
         $("#inputServerAccess option[value='" + e + "']").prop("selected", true);
     });
     
     function altera() {
-
 
         var idsServidores = [];
         $.each($("#inputServerAccess option:selected"), function () {
@@ -145,22 +143,9 @@
             Usuario.Senha = $("#inputPassword").val();
             Usuario.ListaServidores = [];
 
-            //console.log("idsServidores tamanho: " + idsServidores.length);
-
             var url = "/Usuarios/ProcessarUpdatePost";
             var params = { Usuario: Usuario, idsServidores: idsServidores };
             $.post(url, params, RetornoGravacao);
-        }
-    }
-
-    function confirmaSenha() {
-
-        if ($("#inputPassword").val() != $("#inputConfirmPassword").val()) {
-
-            alert("As senhas não coincidem!");
-            return false;
-        } else {
-            return true;
         }
     }
 

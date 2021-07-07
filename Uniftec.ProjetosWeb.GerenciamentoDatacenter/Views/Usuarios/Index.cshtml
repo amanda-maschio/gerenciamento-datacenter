@@ -128,14 +128,12 @@
         });
 
         if (confirmaSenha() && isEmpty(idsServidores) && validaDados()) {
-           // var idsServidores = [];
 
             var Usuario = new Object();
             Usuario.PrimeiroNome = $("#inputFirstName").val();
             Usuario.SegundoNome = $("#inputLastName").val();
             Usuario.Email = $("#inputEmailAddress").val();
             Usuario.Funcao = $("#inputFunction").val();
-            Usuario.Servidores = "n";
             Usuario.Senha = $("#inputPassword").val();
             Usuario.ListaServidores = [];
 

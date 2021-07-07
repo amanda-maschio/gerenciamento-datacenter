@@ -50,21 +50,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.ExecuteNonQuery();
                         comando.Parameters.Clear();
 
-                        //Alterar o Sensor
-                        comando.CommandText = "UPDATE public.sensor " +
-                                               " SET temperatura=@temperatura, pressao=@pressao, altitude=@altitude, umidade=@umidade, data=@data, pontoorvalho=@pontoorvalho " +
-                                               " WHERE servidorid=@servidorid";
-
-                        comando.Parameters.AddWithValue("servidorid", servidor.Id);
-                        comando.Parameters.AddWithValue("temperatura", servidor.Sensor.Temperatura);
-                        comando.Parameters.AddWithValue("pressao", servidor.Sensor.Pressao);
-                        comando.Parameters.AddWithValue("altitude", servidor.Sensor.Altitude);
-                        comando.Parameters.AddWithValue("umidade", servidor.Sensor.Umidade);
-                        comando.Parameters.AddWithValue("data", servidor.Sensor.Data);
-                        comando.Parameters.AddWithValue("pontoorvalho", servidor.Sensor.PontoOrvalho);
-
-                        comando.ExecuteNonQuery();
-
                         transacao.Commit();
 
                     }
@@ -90,12 +75,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         NpgsqlCommand comando = new NpgsqlCommand();
                         comando.Connection = con;
                         comando.Transaction = transacao;
-
-                        //Excluir o Sensor
-                        comando.CommandText = "DELETE FROM public.sensor WHERE servidorid=@servidorid";
-                        comando.Parameters.AddWithValue("servidorid", id);
-                        comando.ExecuteNonQuery();
-                        comando.Parameters.Clear();
 
                         //Excluir o Servidor
                         comando.CommandText = "DELETE FROM public.servidor WHERE servidorid=@servidorid;";
@@ -131,9 +110,9 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Transaction = transacao;
 
                         //Inserir o Servidor
-                        comando.CommandText = "INSERT INTO public.servidor " +
-                                              "(servidorid, nome, enderecofisico, processador, sistemaoperacional, macaddress, ipaddress)" +
-                                              "VALUES(@servidorid, @nome, @enderecofisico, @processador, @sistemaoperacional, @macaddress, @ipaddress);";
+                        comando.CommandText = "INSERT INTO public.servidor" +
+                                              "(servidorid, nome, enderecofisico, processador, sistemaoperacional, macaddress, ipaddress) " +
+                                              "VALUES(@servidorid, @nome, @enderecofisico, @processador, @sistemaoperacional, @macaddress, @ipaddress); ";
 
                         comando.Parameters.AddWithValue("servidorid", servidor.Id);
                         comando.Parameters.AddWithValue("nome", servidor.Nome);
@@ -143,26 +122,9 @@ namespace Uniftec.ProjetosWeb.Repository
                         comando.Parameters.AddWithValue("macaddress", servidor.MacAddress);
                         comando.Parameters.AddWithValue("ipaddress", servidor.IpAddress);
 
-
                         //Executamos o comando
                         comando.ExecuteNonQuery();
                         comando.Parameters.Clear();
-
-                        //Inserir o Sensor
-                        comando.CommandText = "INSERT INTO public.sensor " +
-                                               " (sensorid, temperatura, pressao, altitude, umidade, data, servidorid, pontoorvalho) " +
-                                               " VALUES(@sensorid, @temperatura, @pressao, @altitude, @umidade, @data, @servidorid, @pontoorvalho)";
-
-                        comando.Parameters.AddWithValue("sensorid", servidor.Sensor.Id);
-                        comando.Parameters.AddWithValue("servidorid", servidor.Id);
-                        comando.Parameters.AddWithValue("temperatura", servidor.Sensor.Temperatura);
-                        comando.Parameters.AddWithValue("pressao", servidor.Sensor.Pressao);
-                        comando.Parameters.AddWithValue("altitude", servidor.Sensor.Altitude);
-                        comando.Parameters.AddWithValue("umidade", servidor.Sensor.Umidade);
-                        comando.Parameters.AddWithValue("data", servidor.Sensor.Data);
-                        comando.Parameters.AddWithValue("pontoorvalho", servidor.Sensor.PontoOrvalho);
-
-                        comando.ExecuteNonQuery();
 
                         transacao.Commit();
                     }
@@ -185,13 +147,8 @@ namespace Uniftec.ProjetosWeb.Repository
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.Connection = con;
 
-                comando.CommandText = "select servidor.servidorid , servidor.nome , servidor.enderecofisico , " +
-                                      " servidor.processador, servidor.sistemaoperacional , servidor.macaddress , " +
-                                      " servidor.ipaddress , sensor.sensorid , " +
-                                      " sensor.temperatura , sensor.pressao , sensor.altitude , sensor.umidade , sensor.data , sensor.pontoorvalho " +
-                                      " from servidor, sensor " +
-                                      " where sensor.servidorid = servidor.servidorid " +
-                                      " and servidor.servidorid = @servidorid";
+                comando.CommandText = " SELECT * FROM servidor" +
+                                      " WHERE servidor.servidorid = @servidorid";
                 
                 comando.Parameters.AddWithValue("servidorid", id);
                 var leitor = comando.ExecuteReader();
@@ -208,16 +165,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         MacAddress = leitor["macaddress"].ToString(),
                         IpAddress = leitor["ipaddress"].ToString(),
 
-                        Sensor = new Sensor()
-                        {
-                            Id = Guid.Parse(leitor["sensorid"].ToString()),
-                            Temperatura = float.Parse(leitor["temperatura"].ToString()),
-                            Pressao = float.Parse(leitor["pressao"].ToString()),
-                            Altitude = float.Parse(leitor["altitude"].ToString()),
-                            Umidade = float.Parse(leitor["umidade"].ToString()),
-                            Data = Convert.ToDateTime(leitor["data"]),
-                            PontoOrvalho = float.Parse(leitor["pontoorvalho"].ToString()),
-                        }
                     };
                 };
 
@@ -234,12 +181,7 @@ namespace Uniftec.ProjetosWeb.Repository
                 NpgsqlCommand comando = new NpgsqlCommand();
                 comando.Connection = con;
 
-                comando.CommandText = "select servidor.servidorid , servidor.nome , servidor.enderecofisico , " +
-                                      " servidor.processador, servidor.sistemaoperacional , servidor.macaddress , " +
-                                      " servidor.ipaddress , sensor.sensorid , " +
-                                      " sensor.temperatura , sensor.pressao , sensor.altitude , sensor.umidade , sensor.data , sensor.pontoorvalho " +
-                                      " from servidor, sensor " +
-                                      " where sensor.servidorid = servidor.servidorid ";
+                comando.CommandText = "SELECT * FROM servidor";
 
                 var leitor = comando.ExecuteReader();
 
@@ -255,16 +197,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         MacAddress = leitor["macaddress"].ToString(),
                         IpAddress = leitor["ipaddress"].ToString(),
 
-                        Sensor = new Sensor()
-                        {
-                            Id = Guid.Parse(leitor["sensorid"].ToString()),
-                            Temperatura = float.Parse(leitor["temperatura"].ToString()),
-                            Pressao = float.Parse(leitor["pressao"].ToString()),
-                            Altitude = float.Parse(leitor["altitude"].ToString()),
-                            Umidade = float.Parse(leitor["umidade"].ToString()),
-                            Data = Convert.ToDateTime(leitor["data"]),
-                            PontoOrvalho = float.Parse(leitor["pontoorvalho"].ToString()),
-                        }
                     });
                 };
 

@@ -21,6 +21,8 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
 
         public float PontoOrvalho { get; set; }
 
+        public string MacAddressServidor { get; set; }
+
         public Sensor()
         {
             Id = Guid.NewGuid();

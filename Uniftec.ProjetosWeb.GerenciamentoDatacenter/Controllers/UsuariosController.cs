@@ -53,6 +53,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
                     usuario.ListaServidores.Add(servidor);
                 }
 
+                usuario.GerarHashMd5();
                 var id = clienteHttp.Post<Usuario>(@"usuario/", usuario);
 
                 return RedirectToAction("Gerenciar", "Usuarios");
@@ -73,6 +74,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
                 usuario.ListaServidores.Add(servidor);
             }
 
+            usuario.GerarHashMd5();
             var id = clienteHttp.Put<Usuario>(@"usuario/", usuario.Id, usuario);
 
             return RedirectToAction("Gerenciar", "Usuarios");

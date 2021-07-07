@@ -15,8 +15,7 @@ namespace Uniftec.ProjetosWeb.Repository
 
         public UsuarioRepository(String stringConexao)
         {
-            //this.stringConexao = "Server=127.0.0.1; Port=5432; Database=gerdatacenter; User Id=postgres; Password=070397";
-            this.stringConexao = stringConexao;
+             this.stringConexao = stringConexao;
         }
 
         public void Alterar(Usuario usuario)
@@ -40,14 +39,13 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Alterar o Usuario
                         comando.CommandText = "UPDATE public.usuario " +
-                                              "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, servidores=@servidores, email=@email, senha=@senha " +
+                                              "SET primeironome=@primeironome, segundonome=@segundonome, funcao=@funcao, email=@email, senha=@senha " +
                                               "WHERE usuarioid=@usuarioid";
 
                         comando.Parameters.AddWithValue("usuarioid", usuario.Id);
                         comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
                         comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
                         comando.Parameters.AddWithValue("funcao", usuario.Funcao);
-                        comando.Parameters.AddWithValue("servidores", usuario.Servidores);
                         comando.Parameters.AddWithValue("email", usuario.Email);
                         comando.Parameters.AddWithValue("senha", usuario.Senha);
 
@@ -134,14 +132,13 @@ namespace Uniftec.ProjetosWeb.Repository
 
                         //Inserir o Usuario
                         comando.CommandText = "INSERT INTO public.usuario " +
-                                              "(usuarioid, primeironome, segundonome, funcao, servidores, email, senha)" +
-                                              "VALUES(@usuarioid, @primeironome, @segundonome, @funcao, @servidores, @email, @senha);";
+                                              "(usuarioid, primeironome, segundonome, funcao, email, senha)" +
+                                              "VALUES(@usuarioid, @primeironome, @segundonome, @funcao, @email, @senha);";
 
                         comando.Parameters.AddWithValue("usuarioid", usuario.Id);
                         comando.Parameters.AddWithValue("primeironome", usuario.PrimeiroNome);
                         comando.Parameters.AddWithValue("segundonome", usuario.SegundoNome);
                         comando.Parameters.AddWithValue("funcao", usuario.Funcao);
-                        comando.Parameters.AddWithValue("servidores", usuario.Servidores);
                         comando.Parameters.AddWithValue("email", usuario.Email);
                         comando.Parameters.AddWithValue("senha", usuario.Senha);
                         
@@ -198,7 +195,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         PrimeiroNome = leitor["primeironome"].ToString(),
                         SegundoNome = leitor["segundonome"].ToString(),
                         Funcao = leitor["funcao"].ToString(),
-                        Servidores = leitor["servidores"].ToString(),
                         Email = leitor["email"].ToString(),
                         Senha = leitor["senha"].ToString(),
                         Id = Guid.Parse(leitor["usuarioid"].ToString()),
@@ -208,12 +204,10 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 leitor.Close();
 
-                comando.CommandText = "SELECT * " +
-                                      "FROM usuario u " +
-                                      "INNER JOIN usuario_servidor us ON u.usuarioid = us.idusuario " +
-                                      "INNER JOIN servidor s ON us.idservidor = s.servidorid " +
-                                      "INNER JOIN sensor se ON s.servidorid = se.servidorid " +
-                                      "WHERE u.usuarioid = @usuarioid ";
+                comando.CommandText = "SELECT * FROM usuario usuario " +
+                                      "INNER JOIN usuario_servidor usuario_servidor ON usuario.usuarioid = usuario_servidor.idusuario " +
+                                      "INNER JOIN servidor servidor ON usuario_servidor.idservidor = servidor.servidorid " +
+                                      "WHERE usuario.usuarioid = @usuarioid ";
 
                 comando.Parameters.AddWithValue("usuarioid", id);
                 leitor = comando.ExecuteReader();
@@ -230,16 +224,6 @@ namespace Uniftec.ProjetosWeb.Repository
                         MacAddress = leitor["macaddress"].ToString(),
                         IpAddress = leitor["ipaddress"].ToString(),
 
-                        Sensor = new Sensor()
-                        {
-                            Id = Guid.Parse(leitor["sensorid"].ToString()),
-                            Temperatura = float.Parse(leitor["temperatura"].ToString()),
-                            Pressao = float.Parse(leitor["pressao"].ToString()),
-                            Altitude = float.Parse(leitor["altitude"].ToString()),
-                            Umidade = float.Parse(leitor["umidade"].ToString()),
-                            Data = Convert.ToDateTime(leitor["data"]),
-                            PontoOrvalho = float.Parse(leitor["pontoorvalho"].ToString()),
-                        }
                     });
                 }
                     return usu;
@@ -268,7 +252,6 @@ namespace Uniftec.ProjetosWeb.Repository
                             PrimeiroNome = leitor["primeironome"].ToString(),
                             SegundoNome = leitor["segundonome"].ToString(),
                             Funcao = leitor["funcao"].ToString(),
-                            Servidores = leitor["servidores"].ToString(),
                             Email = leitor["email"].ToString(),
                             Senha = leitor["senha"].ToString(),
                             Id = Guid.Parse(leitor["usuarioid"].ToString()),
@@ -281,12 +264,10 @@ namespace Uniftec.ProjetosWeb.Repository
 
                 foreach (var usuario in usuarios)
                 {
-                    comando.CommandText = "SELECT * " +
-                                      "FROM usuario u " +
-                                      "INNER JOIN usuario_servidor us ON u.usuarioid = us.idusuario " +
-                                      "INNER JOIN servidor s ON us.idservidor = s.servidorid " +
-                                      "INNER JOIN sensor se ON s.servidorid = se.servidorid " +
-                                      "WHERE u.usuarioid = @usuarioid ";
+                    comando.CommandText = "SELECT * FROM usuario usuario " +
+                                      "INNER JOIN usuario_servidor usuario_servidor ON usuario.usuarioid = usuario_servidor.idusuario " +
+                                      "INNER JOIN servidor servidor ON usuario_servidor.idservidor = servidor.servidorid " +
+                                      "WHERE usuario.usuarioid = @usuarioid ";
                 
                     comando.Parameters.AddWithValue("usuarioid", usuario.Id);
                     leitor = comando.ExecuteReader();
@@ -303,16 +284,6 @@ namespace Uniftec.ProjetosWeb.Repository
                             MacAddress = leitor["macaddress"].ToString(),
                             IpAddress = leitor["ipaddress"].ToString(),
 
-                            Sensor = new Sensor()
-                            {
-                                Id = Guid.Parse(leitor["sensorid"].ToString()),
-                                Temperatura = float.Parse(leitor["temperatura"].ToString()),
-                                Pressao = float.Parse(leitor["pressao"].ToString()),
-                                Altitude = float.Parse(leitor["altitude"].ToString()),
-                                Umidade = float.Parse(leitor["umidade"].ToString()),
-                                Data = Convert.ToDateTime(leitor["data"]),
-                                PontoOrvalho = float.Parse(leitor["pontoorvalho"].ToString()),
-                            }
                         });
                     }
                     leitor.Close();

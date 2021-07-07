@@ -22,12 +22,12 @@ namespace Uniftec.ProjetosWeb.Domain.Entities
 
         public string IpAddress { get; set; }
 
-        public Sensor Sensor { get; set; }
+        public List<Sensor> ListaSensores { get; set; }
 
         public Servidor()
         {
             Id = Guid.NewGuid();
-            this.Sensor = new Sensor();
+            this.ListaSensores = new List<Sensor>();
         }
     }
 }

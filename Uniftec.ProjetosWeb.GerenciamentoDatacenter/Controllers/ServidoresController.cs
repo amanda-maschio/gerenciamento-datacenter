@@ -34,7 +34,6 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
         {
             if (ModelState.IsValid)
             {
-                servidor.Sensor = new Sensor();
 
                 var retorno = clienteHttp.Post<Servidor>(@"servidor/", servidor);
 

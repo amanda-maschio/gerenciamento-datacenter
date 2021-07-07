@@ -29,11 +29,11 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.Controllers
             return View();
         }
 
-        public ActionResult Autenticar(Cliente cliente)
+        public ActionResult Autenticar(Usuario usuario)
         {
             try
             {
-                clienteHttp.AuthenticationPost(cliente.Username, cliente.Password);
+                clienteHttp.AuthenticationPost(usuario.Email, usuario.Senha);
                 //Redireciona para a pagina principal
                 return RedirectToAction("index", "Home");
             }

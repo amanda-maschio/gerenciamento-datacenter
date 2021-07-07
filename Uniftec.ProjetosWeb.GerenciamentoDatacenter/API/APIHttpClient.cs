@@ -10,7 +10,6 @@ using Uniftec.ProjetosWeb.GerenciamentoDatacenter.Models;
 
 namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
 {
-   
 
     public class APIHttpClient
     {
@@ -39,7 +38,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
                     }
                     catch (AggregateException e)
                     {
-
+                        
                     }
 
                     return sucesso;
@@ -148,20 +147,19 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
 
                 var response = client.SendAsync(request).Result;
 
-
                 if (response.IsSuccessStatusCode)
                 {
                     var payload = JObject.Parse(response.Content.ReadAsStringAsync().Result);
                     var token = payload.Value<string>("access_token");
 
                     //Salva o usuario, senha e token em memoria
-                    Cliente cliente = new Cliente()
+                    Usuario user = new Usuario()
                     {
-                        Password = password,
-                        Username = username,
+                        Senha = password,
+                        Email = username,
                         Token = token
                     };
-                    HttpContext.Current.Session["user"] = cliente;
+                    HttpContext.Current.Session["user"] = user;
 
                     return token;
                 }
@@ -176,7 +174,7 @@ namespace Uniftec.ProjetosWeb.GerenciamentoDatacenter.API
         {
             if (HttpContext.Current.Session["user"] != null)
             {
-                var cliente = (Cliente)HttpContext.Current.Session["user"];
+                var cliente = (Usuario)HttpContext.Current.Session["user"];
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", cliente.Token);
             }

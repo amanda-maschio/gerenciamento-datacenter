@@ -43,16 +43,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         MacAddress = serv.MacAddress,
                         IpAddress = serv.IpAddress,
 
-                        Sensor = new Sensor()
-                        {
-                            Id = serv.Sensor.Id,
-                            Temperatura = serv.Sensor.Temperatura,
-                            Pressao = serv.Sensor.Pressao,
-                            Altitude = serv.Sensor.Altitude,
-                            Umidade = serv.Sensor.Umidade,
-                            Data = serv.Sensor.Data,
-                            PontoOrvalho = serv.Sensor.PontoOrvalho
-                        }
                     });
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, ServidoresModel);
@@ -96,16 +86,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                         MacAddress = servidor.MacAddress,
                         IpAddress = servidor.IpAddress,
 
-                        Sensor = new Sensor()
-                        {
-                            Id = servidor.Sensor.Id,
-                            Temperatura = servidor.Sensor.Temperatura,
-                            Pressao = servidor.Sensor.Pressao,
-                            Altitude = servidor.Sensor.Altitude,
-                            Umidade = servidor.Sensor.Umidade,
-                            Data = servidor.Sensor.Data,
-                            PontoOrvalho = servidor.Sensor.PontoOrvalho
-                        }
                     };
 
                     return Request.CreateResponse(HttpStatusCode.OK, servidorModel);
@@ -142,16 +122,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     MacAddress = servidor.MacAddress,
                     IpAddress = servidor.IpAddress,
 
-                    Sensor = new Uniftec.ProjetosWeb.Domain.Entities.Sensor()
-                    {
-                        Id = servidor.Sensor.Id,
-                        Temperatura = servidor.Sensor.Temperatura,
-                        Pressao = servidor.Sensor.Pressao,
-                        Altitude = servidor.Sensor.Altitude,
-                        Umidade = servidor.Sensor.Umidade,
-                        Data = servidor.Sensor.Data,
-                        PontoOrvalho = servidor.Sensor.PontoOrvalho
-                    }
                 };
 
                 servidorApplication.Inserir(servidorDomain);
@@ -185,16 +155,6 @@ namespace Ftec.ProjetosWeb.WebApi.Controllers
                     MacAddress = servidor.MacAddress,
                     IpAddress = servidor.IpAddress,
 
-                    Sensor = new Uniftec.ProjetosWeb.Domain.Entities.Sensor()
-                    {
-                        Id = servidor.Sensor.Id,
-                        Temperatura = servidor.Sensor.Temperatura,
-                        Pressao = servidor.Sensor.Pressao,
-                        Altitude = servidor.Sensor.Altitude,
-                        Umidade = servidor.Sensor.Umidade,
-                        Data = servidor.Sensor.Data,
-                        PontoOrvalho = servidor.Sensor.PontoOrvalho
-                    }
                 };
 
                 servidorApplication.Alterar(servidorDomain);
