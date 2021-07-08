@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorApplication.cs" />
     <Compile Include="ServidorApplication.cs" />
     <Compile Include="UsuarioApplication.cs" />
   </ItemGroup>

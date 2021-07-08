@@ -6,6 +6,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        #success, #danger, #warning, #info {
+            display: none;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -16,6 +21,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-primary">
+    <div id="alerts">
+        <div class="alert alert-success" role="alert" id="success">
+
+        </div>
+        <div class="alert alert-danger" role="alert" id="danger">
+
+        </div>
+        <div class="alert alert-warning" role="alert" id="warning">
+
+        </div>
+        <div class="alert alert-info" role="alert" id="info">
+
+        </div>
+    </div>
+
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -127,10 +147,10 @@
 
         if (retorno.MensagemErro) {
 
-            alert("Ocorreu um erro.");
+            exibeAlert("danger", "Ocorreu um erro!");
         }
         else {
-            alert("Gravado com sucesso!");
+            exibeAlert("success", "Cadastrado com Sucesso!");
         }
     }
 
@@ -138,31 +158,38 @@
 
         if ($("#inputName").val() == "") {
 
-            alert("Informe o nome.");
+            exibeAlert("warning", "Informe o nome.");
             return false;
         } else if ($("#inputAddress").val() == "") {
 
-            alert("Informe o endereço.");
+            exibeAlert("warning", "Informe o endereço.");
             return false;
         } else if ($("#inputProcessor").val() == "") {
 
-            alert("Informe o processador");
+            exibeAlert("warning", "Informe o processador.");
             return false;
         } else if ($("#inputOperationalSystem").val() == "") {
 
-            alert("Informe o sistema operacional.");
+            exibeAlert("warning", "Informe o sistema operacional.");
             return false;
         } else if ($("#inputMacAddress").val() == "") {
 
-            alert("Informe o mac address.");
+            exibeAlert("warning", "Informe o mac address.");
             return false;
         } else if ($("#inputIpAddress").val() == "") {
 
-            alert("Informe o ip address.");
+            exibeAlert("warning", "Informe o ip address.");
             return false;
         } else {
             return true;
         }
+
+    }
+
+    function exibeAlert(tipo, mensagem) {
+
+        $("#" + tipo + "").text(mensagem);
+        $("#" + tipo + "").fadeIn(300).delay(3000).fadeOut(400);
 
     }
 

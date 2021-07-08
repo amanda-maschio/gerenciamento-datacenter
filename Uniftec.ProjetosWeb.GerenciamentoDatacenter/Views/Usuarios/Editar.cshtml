@@ -7,6 +7,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        #success, #danger, #warning, #info {
+            display: none;
+        }
+    </style>
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -17,6 +23,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-primary">
+
+    <div id="alerts">
+        <div class="alert alert-success" role="alert" id="success">
+
+        </div>
+        <div class="alert alert-danger" role="alert" id="danger">
+
+        </div>
+        <div class="alert alert-warning" role="alert" id="warning">
+
+        </div>
+        <div class="alert alert-info" role="alert" id="info">
+
+        </div>
+    </div>
+
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -152,16 +174,16 @@
     function RetornoGravacao(retorno) {
        
         if (retorno.MensagemErro) {
-            alert("Ocorreu um erro.");
+            exibeAlert("danger", "Ocorreu um erro!");
         }
         else {
-            alert("Alterado com sucesso!");
+            exibeAlert("success", "Alterado com Sucesso!");
         }
     }
 
     function isEmpty(idsServidores) {
         if (idsServidores.length == 0) {
-            alert("Selecione ao menos um Servidor!");
+            exibeAlert("warning", "Selecione ao menos um Servidor!");
             return false;
         } else {
             return true;
@@ -172,32 +194,39 @@
 
         if ($("#inputFirstName").val() == "") {
 
-            alert("Informe o nome.");
+            exibeAlert("warning", "Informe o nome.");
             return false;
 
         } else if ($("#inputLastName").val() == "") {
 
-            alert("Informe o sobrenome.");
+            exibeAlert("warning", "Informe o sobrenome.");
             return false;
 
         } else if ($("#inputEmailAddress").val() == "") {
 
-            alert("Informe o e-mail.");
+            exibeAlert("warning", "Informe o e-mail.");
             return false;
 
         } else if ($("#inputFunction").val() == "Null" || $("#inputFunction").val() == "") {
 
-            alert("Selecione uma função.");
+            exibeAlert("warning", "Selecione uma função");
             return false;
 
         } else if ($("#inputPassword").val() == "") {
 
-            alert("Informe a senha.");
+            exibeAlert("warning", "Informe o e-mail.");
             return false;
 
-        } else {
+        }else {
             return true;
         }
+
+    }
+
+    function exibeAlert(tipo, mensagem) {
+
+        $("#" + tipo + "").text(mensagem);
+        $("#" + tipo + "").fadeIn(300).delay(3000).fadeOut(400);
 
     }
 </script>

@@ -1,0 +1,29 @@
+[33m5576349[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Alterações visuais, alterações gerais nos repositórios
+[33m7d29e71[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmaster[m[33m)[m Create README.md
+[33mb39eda5[m Create LICENSE
+[33ma3d0764[m Correção de bugs
+[33m939e892[m Atualização do trabalho escrito no repositório
+[33ma160ee7[m Add files via upload
+[33m35c8de7[m Pequenos ajustes, melhorias na parte visual
+[33m3872260[m Integração - Correção de erros, Inclusão de Gráficos
+[33m11c5e34[m Continuação da integração do Projeto com API
+[33m4f4e057[m Início integração do Projeto com API
+[33md27bd91[m Aprimoramento na Persistência
+[33m58b3246[m Aprimoramento da Implementação de Segurança
+[33m4aef475[m Implementação Segurança
+[33maa1ca4c[m Inclusão da classe UsuarioServidor, alterações nas partes de persistência
+[33m21caf49[m Conclusão da implementação de Persistência e Transação de Dados
+[33m6fdb838[m Início da implementação de Persistência de Dados
+[33md58359f[m Adição de referências e pacotes nuget para o funcionamento do Httpclient
+[33m750e948[m Cliente Http utilizado para consumir API; Implementação de estrutura de camadas.
+[33mb1a05b2[m Projeto WebAPI
+[33m0421b42[m Adição das telas de mais detalhes (Gráficos).
+[33m8040354[m Alteração no template de "Servidores Ativos". Inclusão das Views de páginas de erros. Inclusão de Action Filter "SessionLoginActionFilter"
+[33m20b9afe[m Criação Dashboards Individuais, incluindo gráficos
+[33m8065c14[m Novas páginas "Cadastrar Servidor", "Gerenciar Usuários". Novos models "Servidor", "Temperatura", "Umidade", "PontoOrvalho". Pequenas alterações nos demais templates, inclusão das novas páginas no menu lateral.
+[33m6af0332[m Gravar Usuário armazenando os dados do Usuário em variáveis de sessão. Pequenas alterações nos templates.
+[33m41c5b05[m Atualização das Views
+[33m4b163f9[m Inserção de controllers, views e template
+[33m1166e70[m Adição do trabalho escrito ao repositório
+[33m5242600[m Adicionar arquivos de projeto.
+[33m1d5154f[m Adicionar .gitignore e .gitattributes.

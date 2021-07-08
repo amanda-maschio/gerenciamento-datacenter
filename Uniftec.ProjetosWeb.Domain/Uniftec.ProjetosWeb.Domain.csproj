@@ -45,6 +45,7 @@
     <Compile Include="Entities\Servidor.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Entities\UsuarioServidor.cs" />
+    <Compile Include="Interfaces\ISensorRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IServidorRepository.cs" />
     <Compile Include="Interfaces\IUsuarioRepository.cs" />
