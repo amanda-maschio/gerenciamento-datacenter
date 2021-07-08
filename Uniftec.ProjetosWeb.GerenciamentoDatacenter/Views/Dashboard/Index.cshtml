@@ -25,9 +25,18 @@
             flex-wrap: wrap;
         }
 
-        #cardTemperatura,  #cardUmidade, #cardPontoOrvalho{
+        #cardTemperatura,  #cardUmidade, #cardPontoOrvalho {
             width: 500px;
             height: 400px;
+        }
+
+        .card-body {
+            display: flex;
+            align-items: center;
+        }
+
+        .highcharts-credits {
+            display: none;
         }
 
     </style>
@@ -114,7 +123,7 @@
                     <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb mb-4" id="hr">
 
-                        <li class="breadcrumb-item active"><p style="margin-bottom:0rem"> <a href="~/Servidores/Index">Servidores Ativos</a> / Dashboard / Servidor @Model.Nome</p></li>
+                        <li class="breadcrumb-item active"><p style="margin-bottom:0rem"> <a href="~/Servidores/Index">Servidores Ativos</a> / Dashboard / Servidor @Model.Nome.ToString().ToUpper()</p></li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
@@ -141,8 +150,173 @@
                              Temperatura
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <!-- GRÁFICO TEMPERATURA -->
+                            <div class="table-responsive">
+                                <script src="https://code.highcharts.com/highcharts.js"></script>
+                                <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                                <figure class="highcharts-figure">
+                                    <div id="container"></div>
+
+                                </figure>
+
+                                <style type="text/css">
+                                    #container {
+                                        height: 300px;
+                                    }
+
+                                    .highcharts-figure, .highcharts-data-table table {
+                                        min-width: 310px;
+                                        max-width: 500px;
+                                        margin: 1em auto;
+                                    }
+
+                                    .highcharts-data-table table {
+                                        font-family: Verdana, sans-serif;
+                                        border-collapse: collapse;
+                                        border: 1px solid #EBEBEB;
+                                        margin: 10px auto;
+                                        text-align: center;
+                                        width: 100%;
+                                        max-width: 500px;
+                                    }
+
+                                    .highcharts-data-table caption {
+                                        padding: 1em 0;
+                                        font-size: 1.2em;
+                                        color: #555;
+                                    }
+
+                                    .highcharts-data-table th {
+                                        font-weight: 600;
+                                        padding: 0.5em;
+                                    }
+
+                                    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+                                        padding: 0.5em;
+                                    }
+
+                                    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+                                        background: #f8f8f8;
+                                    }
+
+                                    .highcharts-data-table tr:hover {
+                                        background: #f1f7ff;
+                                    }
+                                </style>
+
+                                <script type="text/javascript">
+                                        Highcharts.chart('container', {
+
+                                            chart: {
+                                                type: 'gauge',
+                                                plotBackgroundColor: null,
+                                                plotBackgroundImage: null,
+                                                plotBorderWidth: 0,
+                                                plotShadow: false
+                                            },
+
+                                            title: {
+                                                text: ''
+                                            },
+                                            pane: {
+                                                startAngle: -150,
+                                                endAngle: 150,
+                                                background: [{
+                                                    backgroundColor: {
+                                                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                                        stops: [
+                                                            [0, '#FFF'],
+                                                            [1, '#333']
+                                                        ]
+                                                    },
+                                                    borderWidth: 0,
+                                                    outerRadius: '109%'
+                                                }, {
+                                                    backgroundColor: {
+                                                        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                                                        stops: [
+                                                            [0, '#333'],
+                                                            [1, '#FFF']
+                                                        ]
+                                                    },
+                                                    borderWidth: 1,
+                                                    outerRadius: '107%'
+                                                }, {
+                                                    // default background
+                                                }, {
+                                                    backgroundColor: '#DDD',
+                                                    borderWidth: 0,
+                                                    outerRadius: '105%',
+                                                    innerRadius: '103%'
+                                                }]
+                                            },
+
+                                            // the value axis
+                                            yAxis: {
+                                                min: 0,
+                                                max: 100,
+
+                                                minorTickInterval: 'auto',
+                                                minorTickWidth: 1,
+                                                minorTickLength: 10,
+                                                minorTickPosition: 'inside',
+                                                minorTickColor: '#666',
+
+                                                tickPixelInterval: 30,
+                                                tickWidth: 2,
+                                                tickPosition: 'inside',
+                                                tickLength: 10,
+                                                tickColor: '#666',
+                                                labels: {
+                                                    step: 2,
+                                                    rotation: 'auto'
+                                                },
+                                                title: {
+                                                    text: 'ºC'
+                                                },
+                                                plotBands: [{
+                                                    from: 0,
+                                                    to: 30,
+                                                    color: '#55BF3B' // green
+                                                }, {
+                                                    from: 30,
+                                                    to: 40,
+                                                    color: '#DDDF0D' // yellow
+                                                }, {
+                                                    from: 40,
+                                                    to: 100,
+                                                    color: '#DF5353' // red
+                                                }]
+                                            },
+
+                                            series: [{
+                                                name: 'Temperatura',
+                                                data: [80],
+                                                tooltip: {
+                                                    valueSuffix: ' ºC'
+                                                }
+                                            }]
+
+                                        },
+                                            // Add some life
+                                            function (chart) {
+                                                if (!chart.renderer.forExport) {
+
+                                                    //var model = @Html.Raw(Json.Encode(Model));
+                                                    //var temperatura = model.Sensor.Temperatura;
+                                                    var temperatura = 30;
+
+                                                    point = chart.series[0].points[0];
+                                                    newVal = Math.trunc(temperatura);
+                                                    point.update(newVal);
+
+                                                }
+                                            });
+                                </script>
+                            </div>
                         </div>
                         <div class="card-footer text-muted">
                            
@@ -156,8 +330,166 @@
                              Umidade
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <!-- GRÁFICO UMIDADE -->
+                            <div class="table-responsive">
+                                <script src="https://code.highcharts.com/highcharts.js"></script>
+                                <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                                <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                                <figure class="highcharts-figure">
+                                    <div id="container-speed" class="chart-container"></div>
+                                </figure>
+                                <style type="text/css">
+                                    .highcharts-figure .chart-container {
+                                        width: 400px;
+                                        height: 300px;
+                                    }
+
+                                    .highcharts-figure, .highcharts-data-table table {
+                                        width: 400px;
+                                        margin: 0 auto;
+                                    }
+
+                                    .highcharts-data-table table {
+                                        font-family: Arial, sans-serif;
+                                        border-collapse: collapse;
+                                        border: 1px solid #EBEBEB;
+                                        margin: 10px auto;
+                                        text-align: center;
+                                        width: 100%;
+                                        max-width: 500px;
+                                    }
+
+                                    .highcharts-data-table caption {
+                                        padding: 1em 0;
+                                        font-size: 1.2em;
+                                        color: #555;
+                                    }
+
+                                    .highcharts-data-table th {
+                                        font-weight: 600;
+                                        padding: 0.5em;
+                                    }
+
+                                    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+                                        padding: 0.5em;
+                                    }
+
+                                    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+                                        background: #f8f8f8;
+                                    }
+
+                                    .highcharts-data-table tr:hover {
+                                        background: #f1f7ff;
+                                    }
+                                </style>
+
+                                <script type="text/javascript">
+                                               var gaugeOptions = {
+                                                   chart: {
+                                                       type: 'solidgauge'
+                                                   },
+
+                                                   title: null,
+
+                                                   pane: {
+                                                       center: ['50%', '85%'],
+                                                       size: '140%',
+                                                       startAngle: -90,
+                                                       endAngle: 90,
+                                                       background: {
+                                                           backgroundColor:
+                                                               Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                                           innerRadius: '60%',
+                                                           outerRadius: '100%',
+                                                           shape: 'arc'
+                                                       }
+                                                   },
+
+                                                   exporting: {
+                                                       enabled: false
+                                                   },
+
+                                                   tooltip: {
+                                                       enabled: false
+                                                   },
+
+                                                   // the value axis
+                                                   yAxis: {
+                                                       stops: [
+                                                           [0.1, '#55BF3B'], // green
+                                                           [0.5, '#DDDF0D'], // yellow
+                                                           [0.9, '#DF5353'] // red
+                                                       ],
+                                                       lineWidth: 0,
+                                                       tickWidth: 0,
+                                                       minorTickInterval: null,
+                                                       tickAmount: 2,
+                                                       title: {
+                                                           y: -70
+                                                       },
+                                                       labels: {
+                                                           y: 16
+                                                       }
+                                                   },
+
+                                                   plotOptions: {
+                                                       solidgauge: {
+                                                           dataLabels: {
+                                                               y: 5,
+                                                               borderWidth: 0,
+                                                               useHTML: true
+                                                           }
+                                                       }
+                                                   }
+                                               };
+
+                                               // The speed gauge
+                                               var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+                                                   yAxis: {
+                                                       min: 0,
+                                                       max: 100,
+
+                                                   },
+
+                                                   credits: {
+                                                       enabled: false
+                                                   },
+
+                                                   series: [{
+                                                       name: 'Speed',
+                                                       data: [80],
+                                                       dataLabels: {
+                                                           format:
+                                                               '<div style="text-align:center">' +
+                                                               '<span style="font-size:25px">{y}</span><br/>' +
+                                                               '<span style="font-size:12px;opacity:0.4">%</span>' +
+                                                               '</div>'
+                                                       },
+                                                       tooltip: {
+                                                           valueSuffix: ' % '
+                                                       }
+                                                   }]
+
+                                               }));
+
+                                               // Speed
+                                               var point,
+                                                   newVal;;
+
+                                               if (chartSpeed) {
+                                                   //var model = @Html.Raw(Json.Encode(Model));
+                                                   //var umidade = model.Sensor.Umidade;
+                                                   var umidade = 50;
+
+                                                   point = chartSpeed.series[0].points[0];
+                                                   newVal = Math.trunc(umidade);
+                                                   point.update(newVal);
+                                                }
+                                </script>
+                            </div>
                         </div>
                         <div class="card-footer text-muted">
                           
@@ -171,8 +503,148 @@
                              Ponto de Orvalho
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <!-- GRÁFICO PONTO DE ORVALHO -->
+
+                            <div class="table-responsive">
+                                <script src="https://code.highcharts.com/highcharts.js"></script>
+                                <script src="https://code.highcharts.com/modules/bullet.js"></script>
+                                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                                <figure class="highcharts-figure">
+                                    <div id="container2"></div>
+                                </figure>
+
+                                <style type="text/css">
+                                    #container1 {
+                                        height: 115px;
+                                    }
+
+                                    #container2, #container3 {
+                                        height: 85px;
+                                    }
+
+                                    .hc-cat-title {
+                                        font-size: 13px;
+                                        font-weight: bold;
+                                    }
+
+                                    .highcharts-figure, .highcharts-data-table table {
+                                        min-width: 320px;
+                                        max-width: 800px;
+                                        margin: 1em auto;
+                                    }
+
+                                    .highcharts-data-table table {
+                                        font-family: Verdana, sans-serif;
+                                        border-collapse: collapse;
+                                        border: 1px solid #EBEBEB;
+                                        margin: 10px auto;
+                                        text-align: center;
+                                        width: 100%;
+                                        max-width: 500px;
+                                    }
+
+                                    .highcharts-data-table caption {
+                                        padding: 1em 0;
+                                        font-size: 1.2em;
+                                        color: #555;
+                                    }
+
+                                    .highcharts-data-table th {
+                                        font-weight: 600;
+                                        padding: 0.5em;
+                                    }
+
+                                    .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+                                        padding: 0.5em;
+                                    }
+
+                                    .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+                                        background: #f8f8f8;
+                                    }
+
+                                    .highcharts-data-table tr:hover {
+                                        background: #f1f7ff;
+                                    }
+                                </style>
+                                <script type="text/javascript">
+                                        Highcharts.setOptions({
+                                            chart: {
+                                                inverted: true,
+                                                marginLeft: 135,
+                                                type: 'bullet'
+                                            },
+                                            title: {
+                                                text: null
+                                            },
+                                            legend: {
+                                                enabled: false
+                                            },
+                                            yAxis: {
+                                                gridLineWidth: 0
+                                            },
+                                            plotOptions: {
+                                                series: {
+                                                    pointPadding: 0.25,
+                                                    borderWidth: 0,
+                                                    color: '#000',
+                                                    targetOptions: {
+                                                        width: '200%'
+                                                    }
+                                                }
+                                            },
+                                            credits: {
+                                                enabled: false
+                                            },
+                                            exporting: {
+                                                enabled: false
+                                            }
+                                        });
+
+                                        //var model = @Html.Raw(Json.Encode(Model));
+                                        //var pontoorvalho = Math.trunc(model.Sensor.PontoOrvalho);
+                                        var pontoorvalho = 14;
+
+                                        Highcharts.chart('container2', {
+                                            xAxis: {
+                                                categories: ['<span class="hc-cat-title">Ponto de Orvalho</span><br/>ºC td']
+                                            },
+                                            yAxis: {
+                                                plotBands: [{
+                                                    from: 0,
+                                                    to: 15,
+                                                    color: '#666'
+                                                }, {
+                                                    from: 15,
+                                                    to: 25,
+                                                    color: '#999'
+                                                }, {
+                                                    from: 25,
+                                                    to: 100,
+                                                    color: '#bbb'
+                                                }],
+                                                labels: {
+                                                    format: '{value}'
+                                                },
+                                                title: null
+                                            },
+                                            series: [{
+                                                data: [{
+
+                                                   y: pontoorvalho,
+                                                   target: pontoorvalho
+                                                }]
+                                            }],
+                                            tooltip: {
+                                                pointFormat: '<b>{point.y}</b> (with target at {point.target})'
+                                            }
+                                        });
+
+                                </script>
+                            </div>
+
                         </div>
                         <div class="card-footer text-muted">
                             

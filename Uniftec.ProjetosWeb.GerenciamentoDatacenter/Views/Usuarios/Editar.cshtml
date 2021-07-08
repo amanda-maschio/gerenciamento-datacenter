@@ -11,6 +11,19 @@
         #success, #danger, #warning, #info {
             display: none;
         }
+
+        #btnGroup {
+            display: flex;
+            justify-content: center;
+        }
+
+        #btnGroup a {
+            color: #ffffff;
+        }
+
+        #btnDanger {
+            margin: 0px 0px 0px 2px;
+        }
     </style>
 
     <meta charset="utf-8" />
@@ -99,7 +112,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a class="btn btn-warning btn-block" onclick="altera()">Alterar</a>
+                                        <div class="offset-sm-3 col-sm-6" id="btnGroup">
+                                            <a class="btn btn-warning btn-block" id="btnWarning" onclick="altera()">Alterar</a>
+                                            <a class="btn btn-danger btn-block" id="btnDanger" onclick="exclui()">Excluir</a>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
@@ -145,7 +161,7 @@
     $.each(listaIds.split(","), function (i, e) {
         $("#inputServerAccess option[value='" + e + "']").prop("selected", true);
     });
-    
+
     function altera() {
 
         var idsServidores = [];
@@ -172,7 +188,7 @@
     }
 
     function RetornoGravacao(retorno) {
-       
+
         if (retorno.MensagemErro) {
             exibeAlert("danger", "Ocorreu um erro!");
         }
