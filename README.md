@@ -17,16 +17,42 @@ Futuramente, pretende-se viabilizar a utilização e implementação de um senso
 - HTML / CSS / JS
 
 ## Implantação
-- Banco de dados: Postgresql
+- Banco de dados: PostgreSQL
 
 # Autores
 
-Amanda Maschio - https://www.linkedin.com/in/amanda-maschio-272783186/
+<a href="https://github.com/amanda-maschio">
+ <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/65790874?v=4" width="100px;" alt="Amanda Maschio" title="Amanda Maschio"/>
+</a>
+<p>Amanda Maschio</p>
 
-Reginara Ferreira Borges
+[![Linkedin Badge](https://img.shields.io/badge/-Amanda-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/amanda-maschio-272783186/)](https://www.linkedin.com/in/amanda-maschio-272783186/) 
 
-William da Silva
+<br>
+
+<a href="https://github.com/dasilvawill">
+ <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/39096909?v=4" width="100px;" alt="William da Silva" title="William da Silva"/>
+</a>
+<p>William da Silva</p>
+
+[![Linkedin Badge](https://img.shields.io/badge/-William-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/william-da-silva-a74676166/)](https://www.linkedin.com/in/william-da-silva-a74676166/) 
+
+<br>
+
+<a href="https://github.com/reginaraferreira">
+ <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/65867756?v=4" width="100px;" alt="Reginara Ferreira Borges" title="Reginara Ferreira Borges"/>
+</a>
+<p>Reginara Ferreira Borges</p>
+
+[![Linkedin Badge](https://img.shields.io/badge/-Reginara-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/reginara-ferreira-borges-66a89bb8/)](https://www.linkedin.com/in/reginara-ferreira-borges-66a89bb8/) 
+
+<br>
 
 # Professor
 
-Juliano Paulo Menzen
+<a href="https://github.com/julianomenzen">
+ <img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/8211029?v=4" width="100px;" alt="Juliano Menzen" title="Juliano Menzen"/>
+</a>
+<p>Juliano Paulo Menzen</p>
+
+[![Linkedin Badge](https://img.shields.io/badge/-Juliano-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/juliano-menzen-20034222/)](https://www.linkedin.com/in/juliano-menzen-20034222/) 
