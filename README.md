@@ -9,6 +9,8 @@ Este sistema tem como objetivo apresentar um modelo de Dashboard utilizado para 
 
 Futuramente, pretende-se viabilizar a utilização e implementação de um sensor barômetro, integrado com o chip BME280, responsável por detectar e informar dados reais.
 
+> TRABALHO ESCRITO: [Monitoramento da Sala de Servidores](https://github.com/amanda-maschio/gerenciamento-datacenter/blob/main/ProjetoSistemasWeb_MonitoramentoSalaServidores_Final.pdf)
+
 # Tecnologias utilizadas
 ## Back end
 - C#
