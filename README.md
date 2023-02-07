@@ -1,4 +1,4 @@
-# UNIFTEC - Projeto de Sistemas para Web - Gerenciamento de Datacenter (2020/2)
+# UNIFTEC - Projeto de Sistemas para Web - Gerenciamento de Datacenter (2020/2) - (Em espera)
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/amanda-maschio/gerenciamentoDatacenter/blob/master/LICENSE) 
 
 # Sobre o projeto
